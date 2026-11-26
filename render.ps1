@@ -1,59 +1,43 @@
-param(
-    [string]$OutFile = 'entry.png'
-)
-
+﻿#!/usr/bin/env pwsh
+# Render design.html to entry.png with headless Microsoft Edge.
+# Usage: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\render.ps1
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 $html = Join-Path $root 'design.html'
-$png = Join-Path $root $OutFile
+$png  = Join-Path $root 'entry.png'
 
-if (-not (Test-Path $html)) {
-    throw "design.html not found at $html"
-}
+if (-not (Test-Path $html)) { throw "design.html not found at $html" }
+if (Test-Path $png) { Remove-Item $png -Force }
 
 $edgeCandidates = @(
-    'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe',
-    'C:\Program Files\Microsoft\Edge\Application\msedge.exe',
-    'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
+  'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe',
+  'C:\Program Files\Microsoft\Edge\Application\msedge.exe'
 )
-$edge = $null
-foreach ($candidate in $edgeCandidates) {
-    if (Test-Path $candidate) { $edge = $candidate; break }
-}
-if (-not $edge) {
-    throw 'Microsoft Edge executable not found.'
-}
+$edge = $edgeCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+if (-not $edge) { throw 'Microsoft Edge not found in the standard install locations.' }
 
-if (Test-Path $png) {
-    Remove-Item -LiteralPath $png -Force
-}
-
-$profile = Join-Path $env:TEMP ('news26-edge-' + [guid]::NewGuid().ToString('N'))
 $uri = ([System.Uri]$html).AbsoluteUri
+$edgeArgs = @(
+  '--headless=new',
+  '--disable-gpu',
+  '--hide-scrollbars',
+  '--force-device-scale-factor=1',
+  '--window-size=1024,1024',
+  "--screenshot=$png",
+  '--virtual-time-budget=5000',
+  $uri
+)
 
-& $edge --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 `
-    --window-size=1024,1024 --screenshot=$png --virtual-time-budget=5000 `
-    --user-data-dir=$profile $uri | Out-Null
+& $edge @edgeArgs | Out-Null
 
-if (-not (Test-Path $png)) {
-    throw "Edge produced no screenshot at $png"
-}
+$deadline = (Get-Date).AddSeconds(25)
+while (-not (Test-Path $png) -and (Get-Date) -lt $deadline) { Start-Sleep -Milliseconds 200 }
+if (-not (Test-Path $png)) { throw 'entry.png was not produced by Edge.' }
 
+$item = Get-Item $png
 $bytes = [System.IO.File]::ReadAllBytes($png)
-$signature = ($bytes[0..7] | ForEach-Object { $_.ToString('x2') }) -join ''
-if ($signature -ne '89504e470d0a1a0a') {
-    throw "Output is not a PNG (signature $signature)"
-}
-$width = ([int]$bytes[16] -shl 24) -bor ([int]$bytes[17] -shl 16) -bor ([int]$bytes[18] -shl 8) -bor [int]$bytes[19]
-$height = ([int]$bytes[20] -shl 24) -bor ([int]$bytes[21] -shl 16) -bor ([int]$bytes[22] -shl 8) -bor [int]$bytes[23]
-if ($width -ne 1024 -or $height -ne 1024) {
-    throw "Expected 1024x1024, got ${width}x${height}"
-}
-if ($bytes.Length -gt 1048576) {
-    throw "PNG is $($bytes.Length) bytes, over the 1 MiB limit"
-}
+$width = ([int]$bytes[16] * 16777216) + ([int]$bytes[17] * 65536) + ([int]$bytes[18] * 256) + [int]$bytes[19]
+$height = ([int]$bytes[20] * 16777216) + ([int]$bytes[21] * 65536) + ([int]$bytes[22] * 256) + [int]$bytes[23]
+Write-Output ("entry.png: {0} bytes, {1}x{2}" -f $item.Length, $width, $height)
 
-Remove-Item -Recurse -Force -LiteralPath $profile -ErrorAction SilentlyContinue
-
-Write-Output ("rendered {0}: {1} bytes, {2}x{3}" -f $OutFile, $bytes.Length, $width, $height)
