@@ -1,43 +1,29 @@
-﻿#!/usr/bin/env pwsh
-# Render design.html to entry.png with headless Microsoft Edge.
-# Usage: powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\render.ps1
 $ErrorActionPreference = 'Stop'
 
-$root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$html = Join-Path $root 'design.html'
-$png  = Join-Path $root 'entry.png'
+$here = Split-Path -Parent $MyInvocation.MyCommand.Path
+$edge = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
+if (-not (Test-Path $edge)) { $edge = 'C:\Program Files\Microsoft\Edge\Application\msedge.exe' }
+if (-not (Test-Path $edge)) { throw 'Microsoft Edge not found' }
 
-if (-not (Test-Path $html)) { throw "design.html not found at $html" }
+$html = Join-Path $here 'design.html'
+$png  = Join-Path $here 'entry.png'
+if (-not (Test-Path $html)) { throw "design.html not found: $html" }
 if (Test-Path $png) { Remove-Item $png -Force }
 
-$edgeCandidates = @(
-  'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe',
-  'C:\Program Files\Microsoft\Edge\Application\msedge.exe'
+$url = 'file:///' + ($html -replace '\\', '/')
+$args = @(
+  '--headless=new', '--disable-gpu', '--hide-scrollbars',
+  '--force-device-scale-factor=1', '--window-size=1024,1024',
+  "--screenshot=$png", '--virtual-time-budget=6000', $url
 )
-$edge = $edgeCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
-if (-not $edge) { throw 'Microsoft Edge not found in the standard install locations.' }
+$p = Start-Process -FilePath $edge -ArgumentList $args -NoNewWindow -PassThru -Wait
+if ($p.ExitCode -ne 0) { throw "Edge exited $($p.ExitCode)" }
 
-$uri = ([System.Uri]$html).AbsoluteUri
-$edgeArgs = @(
-  '--headless=new',
-  '--disable-gpu',
-  '--hide-scrollbars',
-  '--force-device-scale-factor=1',
-  '--window-size=1024,1024',
-  "--screenshot=$png",
-  '--virtual-time-budget=5000',
-  $uri
-)
+for ($i = 0; $i -lt 50; $i++) {
+  if ((Test-Path $png) -and ((Get-Item $png).Length -gt 0)) { break }
+  Start-Sleep -Milliseconds 200
+}
+if (-not (Test-Path $png)) { throw 'screenshot was not produced' }
 
-& $edge @edgeArgs | Out-Null
-
-$deadline = (Get-Date).AddSeconds(25)
-while (-not (Test-Path $png) -and (Get-Date) -lt $deadline) { Start-Sleep -Milliseconds 200 }
-if (-not (Test-Path $png)) { throw 'entry.png was not produced by Edge.' }
-
-$item = Get-Item $png
-$bytes = [System.IO.File]::ReadAllBytes($png)
-$width = ([int]$bytes[16] * 16777216) + ([int]$bytes[17] * 65536) + ([int]$bytes[18] * 256) + [int]$bytes[19]
-$height = ([int]$bytes[20] * 16777216) + ([int]$bytes[21] * 65536) + ([int]$bytes[22] * 256) + [int]$bytes[23]
-Write-Output ("entry.png: {0} bytes, {1}x{2}" -f $item.Length, $width, $height)
-
+$f = Get-Item $png
+Write-Output ("RENDERED {0} bytes {1}" -f $f.Length, $f.FullName)

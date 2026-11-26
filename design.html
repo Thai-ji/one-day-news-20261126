@@ -2,764 +2,556 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>THE WORLD IN ONE DAY 鈥?Thursday 26 November 2026</title>
+<title>One Day — Thursday 26 November 2026</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 1024px; height: 1024px; overflow: hidden; background: #f7f2e8; }
-  body { font-family: "Segoe UI", Arial, Helvetica, sans-serif; color: #151515; -webkit-font-smoothing: antialiased; }
-  .page { width: 1024px; height: 1024px; padding: 6px 8px 3px; display: flex; flex-direction: column; background: #f7f2e8; }
-
-  /* ---------- kicker ---------- */
-  .kicker { height: 20px; flex: 0 0 20px; display: flex; align-items: center; justify-content: space-between;
-            border-top: 3px solid #111; border-bottom: 2px solid #111; font-size: 8.4px; font-weight: 700;
-            letter-spacing: .13em; text-transform: uppercase; }
-  .kicker .left { display: flex; align-items: center; gap: 6px; }
-  .kicker .left i { display: inline-block; width: 8px; height: 8px; background: #c0231f; }
-  .kicker .right { color: #222; }
-
-  /* ---------- masthead ---------- */
-  .masthead { height: 79px; flex: 0 0 79px; display: flex; align-items: center; justify-content: center;
-              border-bottom: 3px double #111; }
-  .masthead-date { font-family: "Times New Roman", Georgia, serif; font-weight: 900; font-size: 68px;
-                   line-height: 1; letter-spacing: -.022em; white-space: nowrap; }
-
-  /* ---------- subhead ---------- */
-  .subhead { height: 29px; flex: 0 0 29px; display: flex; align-items: center; justify-content: center;
-             font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 12.6px;
-             line-height: 13.6px; text-align: center; color: #2a2a2a; padding: 0 14px; }
-
-  /* ---------- stats ---------- */
-  .stats { height: 46px; flex: 0 0 46px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
-  .stat { background: #fffdf7; border: 1px solid #1b1b1b; padding: 2px 6px 3px; display: flex;
-          flex-direction: column; justify-content: center; }
-  .stat b { font-family: "Times New Roman", Georgia, serif; font-size: 21px; line-height: 22px; letter-spacing: -.01em; }
-  .stat span { font-size: 6.9px; line-height: 8px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #444; }
-  .stat.r b { color: #b3261e; }
-  .stat.b b { color: #174c86; }
-  .stat.g b { color: #1f6b43; }
-
-  /* ---------- region strip ---------- */
-  .regions { height: 22px; flex: 0 0 22px; display: flex; border: 1px solid #111; }
-  .region { flex: 1 1 0; display: flex; align-items: center; justify-content: center; gap: 3px;
-            color: #fff; font-size: 6.7px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
-            border-right: 1px solid rgba(255,255,255,.35); white-space: nowrap; }
-  .region:last-child { border-right: 0; }
-  .region b { font-size: 9px; }
-  .rg1 { background: #9e2f24; } .rg2 { background: #c26a1e; } .rg3 { background: #1c4d87; }
-  .rg4 { background: #5d3591; } .rg5 { background: #276b43; } .rg6 { background: #96345c; }
-  .rg7 { background: #22626b; } .rg8 { background: #7a4f24; } .rg9 { background: #365467; }
-
-  /* ---------- timeline ---------- */
-  .timeline { height: 52px; flex: 0 0 52px; display: flex; border: 1px solid #111; margin-top: 4px; background: #fffdf7; }
-  .tl-label { width: 116px; flex: 0 0 116px; background: #111; color: #fff; padding: 5px 6px 4px; }
-  .tl-label b { display: block; font-size: 10.2px; line-height: 11px; letter-spacing: .1em; }
-  .tl-label span { display: block; font-size: 5.8px; line-height: 7px; letter-spacing: .07em; color: #cfc8ba; margin-top: 2px; text-transform: uppercase; }
-  .tl-cell { flex: 1 1 0; border-left: 1px solid #b9b0a0; padding: 5px 6px 3px; overflow: hidden; }
-  .tl-cell b { display: block; font-size: 8.6px; line-height: 10px; color: #b3261e; letter-spacing: .04em; }
-  .tl-cell span { display: block; font-size: 7.1px; line-height: 9px; margin-top: 2px; color: #222; }
-
-  /* ---------- cards ---------- */
-  .cards { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: repeat(12, 1fr);
-           grid-template-rows: 1.19fr 1.19fr 1.08fr 1fr; gap: 4px; margin-top: 4px; }
-  .card { position: relative; overflow: hidden; background: #fffdf7; border: 1px solid #b5ac9c;
-          border-top: 3px solid #444; padding: 3px 5px 3px; display: flex; flex-direction: column; }
-  .card.w4 { grid-column: span 4; }
-  .card.w3 { grid-column: span 3; }
-  .card .scene { display: block; width: 100%; height: 64px; flex: 0 0 64px; }
-  .card.small .scene { height: 56px; flex-basis: 56px; }
-  .card.tiny .scene { height: 48px; flex-basis: 48px; }
-  .card h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 14.4px;
-             line-height: 1.07; margin-top: 2px; letter-spacing: -.005em; }
-  .card.small h2 { font-size: 14px; }
-  .card.tiny h2 { font-size: 12.6px; }
-  .card .dek { font-size: 8.2px; line-height: 9.4px; color: #3d3d3d; margin-top: 1px; }
-  .card.tiny .dek { font-size: 7.6px; line-height: 8.7px; }
-  .card .meta { margin-top: auto; padding-top: 1px; display: flex; align-items: center; justify-content: space-between;
-                font-size: 6.2px; line-height: 8px; letter-spacing: .055em; text-transform: uppercase; color: #555; white-space: nowrap; }
-  .card .tag { background: #ece5d8; border: 1px solid #bcb2a1; padding: 0 3px; font-weight: 700; color: #222; }
-  .card .tag.red { background: #b3261e; border-color: #b3261e; color: #fff; }
-
-  /* ---------- map band ---------- */
-  .mapband { height: 132px; flex: 0 0 132px; display: flex; border: 1px solid #111; margin-top: 4px; background: #fffdf7; overflow: hidden; }
-  .mapwrap { width: 57.5%; flex: 0 0 57.5%; border-right: 1px solid #111; padding: 2px 4px 1px 5px; display: flex; flex-direction: column; }
-  .map-title { flex: 0 0 11px; font-size: 7.4px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
-  .mapwrap svg { width: 100%; flex: 1 1 auto; min-height: 0; display: block; }
-  .briefs { flex: 1 1 auto; padding: 2px 6px 1px 7px; overflow: hidden; }
-  .briefs h3 { font-size: 7.6px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; height: 12px; }
-  .briefs h3 i { color: #b3261e; font-style: normal; }
-  .brief-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(12, 8.9px); grid-auto-flow: column; column-gap: 9px; }
-  .brief { font-size: 6.6px; line-height: 8.9px; white-space: nowrap; overflow: hidden; color: #222; }
-  .brief b { color: #b3261e; font-size: 6.6px; }
-
-  /* ---------- date check ---------- */
-  .datecheck { height: 52px; flex: 0 0 52px; border: 2px solid #111; margin-top: 4px; display: flex; background: #fffdf7; overflow: hidden; }
-  .dc-label { width: 118px; flex: 0 0 118px; background: #b3261e; color: #fff; padding: 4px 6px; }
-  .dc-label b { display: block; font-size: 8.6px; line-height: 10px; letter-spacing: .06em; }
-  .dc-label span { display: block; font-size: 6px; line-height: 7.5px; letter-spacing: .05em; margin-top: 2px; color: #ffe1dc; }
-  .dc-body { flex: 1 1 auto; padding: 2px 8px 2px; overflow: hidden; }
-  .dc-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; }
-  .dc-item { font-size: 6.6px; line-height: 10.2px; color: #2a2a2a; white-space: nowrap; }
-  .dc-item b { color: #b3261e; }
-  .dc-note { font-family: Georgia, serif; font-style: italic; font-size: 7px; line-height: 9px; color: #333;
-             border-top: 1px solid #c6bcaa; margin-top: 1px; padding-top: 1px; }
-
-  /* ---------- footer ---------- */
-  .footer { height: 13px; flex: 0 0 13px; display: flex; align-items: center; justify-content: space-between;
-            font-size: 5.9px; line-height: 7px; letter-spacing: .035em; text-transform: uppercase; color: #444; margin-top: 2px; }
-  .footer .legend { white-space: nowrap; }
-  .footer .sign { white-space: nowrap; font-weight: 700; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1024px;height:1024px;overflow:hidden;background:#e7e1d2}
+  body{font-family:'Arial Narrow','Segoe UI',Arial,sans-serif;color:#16181d;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+  .page{position:relative;width:1024px;height:1024px;padding:12px 20px 8px;display:flex;flex-direction:column;gap:8px;background:#f7f2e5;overflow:hidden}
+  .kicker{flex:0 0 auto;height:16px;display:flex;align-items:flex-end;justify-content:space-between;border-bottom:3px double #16181d;padding-bottom:3px;font-size:7.4px;letter-spacing:.9px;color:#3c424d}
+  .kicker b{font-size:9.4px;letter-spacing:2.1px;color:#16181d}
+  .masthead{flex:0 0 auto;height:82px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #16181d;font-family:'Times New Roman',Georgia,serif;font-weight:700;font-size:68px;line-height:1;letter-spacing:-3.2px;white-space:nowrap}
+  .subhead{flex:0 0 auto;height:22px;display:flex;align-items:center;justify-content:center;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:10.6px;color:#333a45;letter-spacing:.1px}
+  .stats{flex:0 0 auto;height:46px;display:flex;border:1.4px solid #16181d;background:#fffdf7}
+  .stat{flex:1;display:flex;flex-direction:column;justify-content:center;padding:3px 7px 2px;border-right:1px solid #16181d;position:relative}
+  .stat:last-child{border-right:0}
+  .stat b{font-family:Georgia,serif;font-size:19px;line-height:19px;letter-spacing:-.3px}
+  .stat span{font-size:6.2px;line-height:7px;letter-spacing:.55px;text-transform:uppercase;color:#4b515c;margin-top:1px}
+  .stat i{position:absolute;left:0;top:0;width:100%;height:3px;display:block}
+  .regions{flex:0 0 auto;height:22px;display:flex;border:1.2px solid #16181d}
+  .reg{flex:1;display:flex;align-items:center;justify-content:center;gap:3px;font-size:6.8px;font-weight:700;letter-spacing:.35px;border-right:1px solid rgba(255,255,255,.5);white-space:nowrap}
+  .reg:last-child{border-right:0}
+  .reg em{font-style:normal;font-size:8px;font-weight:700}
+  .timeline{flex:0 0 auto;height:46px;display:flex;border:1.4px solid #16181d;background:#fffdf7}
+  .tlabel{flex:0 0 102px;background:#1b2440;color:#fff;padding:4px 7px;display:flex;flex-direction:column;justify-content:center}
+  .tlabel b{font-size:8.6px;line-height:9px;letter-spacing:1.2px}
+  .tlabel span{font-size:5.2px;line-height:6px;color:#b9c5dc;margin-top:2px;letter-spacing:.35px}
+  .tmom{flex:1;padding:3px 6px 2px;border-right:1px solid #c9c2b0;display:flex;flex-direction:column;justify-content:center;min-width:0}
+  .tmom:last-child{border-right:0}
+  .tmom b{font-size:8px;line-height:8px;color:#c8322b;letter-spacing:.35px}
+  .tmom span{font-size:6.1px;line-height:7px;margin-top:2px;letter-spacing:.05px;color:#232830;text-transform:uppercase}
+  .lead-row{flex:0 0 auto;height:202px;display:flex;gap:3px}
+  .card{background:#fffdf7;border:1.2px solid #16181d;position:relative;display:flex;flex-direction:column;overflow:hidden}
+  .lead{width:326px;height:202px}
+  .small{width:192px;height:128px}
+  .scene{display:block;width:100%;flex:0 0 auto}
+  .lead .scene{height:120px}
+  .small .scene{height:70px}
+  .card .body{padding:5px 7px 5px;display:flex;flex-direction:column;flex:1;min-height:0}
+  .small .body{padding:4px 5px 4px}
+  .card h3{font-family:Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:-.1px;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+  .lead h3{font-size:12.4px;line-height:13.8px;margin:1px 0 3px;-webkit-line-clamp:2}
+  .small h3{font-size:9.6px;line-height:10.6px;margin:1px 0 2px;-webkit-line-clamp:2}
+  .card p{color:#343b46;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+  .lead p{font-size:7.9px;line-height:9.5px;-webkit-line-clamp:2}
+  .small p{font-size:6.4px;line-height:7.4px;-webkit-line-clamp:1}
+  .meta{margin-top:auto;display:flex;align-items:center;gap:4px;font-size:5.9px;letter-spacing:.25px;color:#5b606b;text-transform:uppercase;white-space:nowrap;overflow:hidden}
+  .small .meta{font-size:5.3px;gap:3px}
+  .badge{flex:0 0 auto;font-size:5.1px;font-weight:700;padding:1px 3px;color:#fff;background:#2e7d4f;letter-spacing:.3px}
+  .badge.off{background:#1f5fa8}.badge.rep{background:#a9761a}.badge.clm{background:#8a4f9e}.badge.ong{background:#6b7280}
+  .regtag{position:absolute;top:3px;left:3px;z-index:2;font-size:5.2px;font-weight:700;letter-spacing:.55px;color:#fff;padding:2px 4px;background:#c8322b}
+  .regtag.eu{background:#1f5fa8}.regtag.me{background:#8a3b2e}.regtag.af{background:#2e7d4f}.regtag.sa{background:#b5731a}.regtag.sc{background:#39406b}
+  .cnum{position:absolute;top:3px;right:3px;z-index:2;width:13px;height:13px;border-radius:50%;background:#fffdf7;border:1.2px solid #16181d;font-size:7px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .small .cnum{width:11px;height:11px;font-size:6.2px}
+  .small-row{flex:0 0 auto;height:128px;display:flex;gap:6px}
+  .mapband{flex:0 0 auto;height:154px;display:flex;gap:8px}
+  .mapbox{width:520px;height:154px;border:1.4px solid #16181d;background:#dcecf7;position:relative;overflow:hidden}
+  .maphead{position:absolute;top:0;left:0;z-index:3;background:#1b2440;color:#fff;font-size:6.2px;letter-spacing:1px;padding:2px 6px;font-weight:700}
+  .mapbox svg{display:block;width:100%;height:100%}
+  .briefs{width:456px;height:154px;border:1.4px solid #16181d;background:#fffdf7;display:flex;flex-direction:column;padding:4px 6px 3px}
+  .briefhead{flex:0 0 auto;font-size:7px;font-weight:700;letter-spacing:.75px;border-bottom:1px solid #16181d;padding-bottom:2px;display:flex;justify-content:space-between;align-items:baseline}
+  .briefhead span{font-size:5.6px;color:#5b606b;letter-spacing:.3px}
+  .briefcols{flex:1;display:flex;gap:9px;padding-top:3px;min-height:0}
+  .briefcol{flex:1;display:flex;flex-direction:column;justify-content:space-between;min-height:0}
+  .brief{display:flex;gap:2.5px;font-size:6px;line-height:7.3px;letter-spacing:0;color:#20242b}
+  .brief b{flex:0 0 auto;color:#c8322b;font-size:6px;line-height:7.3px}
+  .datecheck{flex:0 0 auto;height:54px;border:1.4px solid #16181d;background:#fdf8ea;padding:4px 8px 3px;display:flex;flex-direction:column;justify-content:space-between}
+  .dct{font-size:7.4px;font-weight:700;letter-spacing:.65px;color:#c8322b}
+  .dci{font-size:6.1px;line-height:7.4px;color:#333a45}
+  .dcn{font-size:6.4px;line-height:7.6px;font-weight:700}
+  .footer{flex:0 0 auto;height:14px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #16181d;padding-top:1px;font-size:5.9px;letter-spacing:.3px;color:#4b515c}
 </style>
 </head>
 <body>
-<div class="page" id="page">
+<div class="page">
+  <div class="kicker"><span><b>THE WORLD IN ONE DAY</b></span><span>36 STORIES &middot; 9 REGIONS &middot; 41 SOURCES &middot; 15 FIELDS</span></div>
+  <div class="masthead">THURSDAY 26 NOVEMBER 2026</div>
+  <div class="subhead">Macy&rsquo;s parade postponed &middot; India marks 18 years since 26/11 &middot; Gukesh and Sindarov level 1-1 in Geneva</div>
 
-  <!-- kicker -->
-  <div class="kicker">
-    <div class="left"><i></i><span>THE WORLD IN ONE DAY</span></div>
-    <div class="right">36 STORIES 路 9 REGIONS 路 41 SOURCES 路 15 FIELDS</div>
-  </div>
-
-  <!-- masthead -->
-  <div class="masthead">
-    <div class="masthead-date">THURSDAY 26 NOVEMBER 2026</div>
-  </div>
-
-  <!-- subhead -->
-  <div class="subhead">A nor&rsquo;easter postpones Macy&rsquo;s 100th Thanksgiving parade, India marks 18 years since the 26/11 Mumbai attacks, and Gukesh meets Sindarov in Game 3 in Geneva.</div>
-
-  <!-- stats -->
   <div class="stats">
-    <div class="stat r"><b>35%</b><span>Tariff ceiling</span></div>
-    <div class="stat b"><b>&euro;1.6tn</b><span>EU budget talks</span></div>
-    <div class="stat g"><b>&pound;2,166</b><span>Energy price cap</span></div>
-    <div class="stat r"><b>31</b><span>Cairo fire dead</span></div>
-    <div class="stat b"><b>166</b><span>26/11 victims</span></div>
-    <div class="stat g"><b>2.24&deg;C</b><span>Above pre-industrial</span></div>
+    <div class="stat"><i style="background:#c8322b"></i><b>60 mph</b><span>Parade gusts</span></div>
+    <div class="stat"><i style="background:#d99b12"></i><b>18 yrs</b><span>Mumbai remembered</span></div>
+    <div class="stat"><i style="background:#1f5fa8"></i><b>&euro;1.6tn</b><span>EU budget plan</span></div>
+    <div class="stat"><i style="background:#2e7d4f"></i><b>31</b><span>Cairo fire dead</span></div>
+    <div class="stat"><i style="background:#8a3b2e"></i><b>2&deg;C</b><span>Six days above</span></div>
+    <div class="stat"><i style="background:#39406b"></i><b>1M</b><span>Satellites approved</span></div>
   </div>
 
-  <!-- region strip -->
   <div class="regions">
-    <div class="region rg1">N. America <b>4</b></div>
-    <div class="region rg2">LatAm <b>2</b></div>
-    <div class="region rg3">Europe <b>7</b></div>
-    <div class="region rg4">Middle East <b>6</b></div>
-    <div class="region rg5">Africa <b>4</b></div>
-    <div class="region rg6">S. Asia <b>3</b></div>
-    <div class="region rg7">E. Asia <b>5</b></div>
-    <div class="region rg8">SEA <b>3</b></div>
-    <div class="region rg9">Oceania+Sci <b>2</b></div>
+    <div class="reg" style="background:#c8322b;color:#fff">N AMERICA <em>4</em></div>
+    <div class="reg" style="background:#d99b12;color:#241a00">LATAM <em>2</em></div>
+    <div class="reg" style="background:#1f5fa8;color:#fff">EUROPE <em>7</em></div>
+    <div class="reg" style="background:#6d3f5e;color:#fff">MID EAST <em>6</em></div>
+    <div class="reg" style="background:#2e7d4f;color:#fff">AFRICA <em>4</em></div>
+    <div class="reg" style="background:#b5731a;color:#fff">S ASIA <em>3</em></div>
+    <div class="reg" style="background:#263a63;color:#fff">E ASIA <em>5</em></div>
+    <div class="reg" style="background:#3f7f7a;color:#fff">SE ASIA <em>3</em></div>
+    <div class="reg" style="background:#7a6a2f;color:#fff">OCEANIA &amp; SCI <em>2</em></div>
   </div>
 
-  <!-- timeline -->
   <div class="timeline">
-    <div class="tl-label"><b>THE DAY IN UTC</b><span>editorial time slots</span></div>
-    <div class="tl-cell"><b>00:00</b><span>Parade weather watch in New York</span></div>
-    <div class="tl-cell"><b>06:00</b><span>Mumbai tributes mark 26/11 anniversary</span></div>
-    <div class="tl-cell"><b>09:00</b><span>EU budget summit opens, Brussels</span></div>
-    <div class="tl-cell"><b>12:00</b><span>Gukesh&ndash;Sindarov Game 3 begins</span></div>
-    <div class="tl-cell"><b>16:00</b><span>Houthi missile claim on Riyadh</span></div>
-    <div class="tl-cell"><b>23:00</b><span>The day&rsquo;s 36 stories filed</span></div>
+    <div class="tlabel"><b>THE DAY IN UTC</b><span>EDITORIAL TIME SLOTS</span></div>
+    <div class="tmom"><b>02:00</b><span>Overnight strikes hit Gaza</span></div>
+    <div class="tmom"><b>06:00</b><span>India marks 26/11 anniversary</span></div>
+    <div class="tmom"><b>09:00</b><span>EU leaders open budget summit</span></div>
+    <div class="tmom"><b>12:00</b><span>Nor&rsquo;easter defers Macy&rsquo;s parade</span></div>
+    <div class="tmom"><b>15:00</b><span>Gukesh level after Game 3</span></div>
+    <div class="tmom"><b>19:00</b><span>Cairo tanker fire kills 31</span></div>
   </div>
 
-  <!-- card grid -->
-  <div class="cards" id="cards">
-
-    <!-- CARD 1 路 Macy's -->
-    <div class="card w4" style="border-top-color:#c0231f">
-      <svg class="scene" viewBox="0 0 320 56" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="320" height="56" fill="#cfe8f6"/>
-        <g stroke="#8fbfd8" stroke-width="1.4" opacity=".9">
-          <line x1="14" y1="-4" x2="2" y2="18"/><line x1="40" y1="-4" x2="28" y2="18"/>
-          <line x1="66" y1="-4" x2="54" y2="18"/><line x1="150" y1="-4" x2="138" y2="18"/>
-          <line x1="176" y1="-4" x2="164" y2="18"/><line x1="202" y1="-4" x2="190" y2="18"/>
-          <line x1="286" y1="-4" x2="274" y2="18"/><line x1="312" y1="-4" x2="300" y2="18"/>
-          <line x1="238" y1="34" x2="226" y2="56"/><line x1="196" y1="34" x2="184" y2="56"/>
+  <div class="lead-row">
+    <article class="card lead">
+      <span class="regtag">NORTH AMERICA</span><span class="cnum">01</span>
+      <svg class="scene" viewBox="0 0 326 124" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="326" height="124" fill="#c9e6f7"/>
+        <circle cx="286" cy="24" r="16" fill="#f9d976" opacity=".55"/>
+        <g fill="#93aec4">
+          <rect x="0" y="58" width="30" height="50"/><rect x="30" y="44" width="26" height="64"/><rect x="56" y="62" width="34" height="46"/>
+          <rect x="236" y="50" width="30" height="58"/><rect x="266" y="60" width="28" height="48"/><rect x="294" y="46" width="32" height="62"/>
         </g>
-        <g fill="#8598a9">
-          <rect x="0" y="38" width="26" height="18"/><rect x="28" y="30" width="18" height="26"/>
-          <rect x="48" y="36" width="24" height="20"/><rect x="92" y="33" width="16" height="23"/>
-          <rect x="110" y="40" width="28" height="16"/><rect x="140" y="30" width="20" height="26"/>
-          <rect x="162" y="37" width="26" height="19"/><rect x="190" y="34" width="18" height="22"/>
+        <g fill="#f7e7a9">
+          <rect x="6" y="66" width="4" height="5"/><rect x="16" y="66" width="4" height="5"/><rect x="6" y="78" width="4" height="5"/><rect x="16" y="78" width="4" height="5"/>
+          <rect x="36" y="52" width="4" height="5"/><rect x="46" y="52" width="4" height="5"/><rect x="36" y="64" width="4" height="5"/>
+          <rect x="242" y="58" width="4" height="5"/><rect x="252" y="58" width="4" height="5"/><rect x="272" y="68" width="4" height="5"/><rect x="300" y="54" width="4" height="5"/>
         </g>
-        <g fill="#f6d35c">
-          <rect x="33" y="35" width="3" height="3"/><rect x="40" y="35" width="3" height="3"/>
-          <rect x="33" y="42" width="3" height="3"/><rect x="40" y="42" width="3" height="3"/>
-          <rect x="97" y="38" width="3" height="3"/><rect x="103" y="38" width="3" height="3"/>
-          <rect x="97" y="45" width="3" height="3"/><rect x="103" y="45" width="3" height="3"/>
+        <g stroke="#ffffff" stroke-width="1" opacity=".75">
+          <line x1="20" y1="6" x2="12" y2="20"/><line x1="58" y1="10" x2="50" y2="24"/><line x1="96" y1="4" x2="88" y2="18"/>
+          <line x1="196" y1="8" x2="188" y2="22"/><line x1="232" y1="14" x2="224" y2="28"/><line x1="300" y1="6" x2="292" y2="20"/>
         </g>
         <g>
-          <ellipse cx="84" cy="24" rx="28" ry="18" fill="#d93a2b"/>
-          <circle cx="108" cy="15" r="9" fill="#e8533f"/>
-          <circle cx="111" cy="14" r="2" fill="#2b2b2b"/>
-          <polygon points="116,15 124,18 116,21" fill="#f5b82e"/>
-          <ellipse cx="62" cy="14" rx="9" ry="13" fill="#f5b82e"/>
-          <ellipse cx="74" cy="11" rx="7" ry="12" fill="#f0932b"/>
-          <ellipse cx="86" cy="10" rx="6" ry="10" fill="#f5b82e"/>
-          <path d="M68 40 L52 56 M84 42 L84 56 M100 40 L116 56" stroke="#5f7181" stroke-width="1.5" fill="none"/>
-          <circle cx="52" cy="55" r="2.2" fill="#40505f"/><circle cx="84" cy="55" r="2.2" fill="#40505f"/><circle cx="116" cy="55" r="2.2" fill="#40505f"/>
+          <ellipse cx="150" cy="48" rx="30" ry="22" fill="#cf3a30"/>
+          <circle cx="150" cy="40" r="12" fill="#e85a4f"/>
+          <path d="M150 70 L150 86" stroke="#5b6270" stroke-width="1.2"/>
+          <path d="M138 86 q12 6 24 0" fill="none" stroke="#cf3a30" stroke-width="2"/>
         </g>
         <g>
-          <ellipse cx="262" cy="26" rx="13" ry="9" fill="#2b6cb0"/>
-          <circle cx="271" cy="20" r="5" fill="#3b7dc4"/>
-          <path d="M262 35 L262 50" stroke="#5f7181" stroke-width="1.4"/>
-          <circle cx="262" cy="51" r="2" fill="#40505f"/>
+          <circle cx="222" cy="46" r="18" fill="#efb42a"/>
+          <circle cx="216" cy="41" r="5" fill="#ffd766"/>
+          <path d="M222 64 L222 78" stroke="#5b6270" stroke-width="1.2"/>
         </g>
-        <rect x="212" y="4" width="100" height="26" rx="2" fill="#fffdf7" stroke="#c0231f" stroke-width="2"/>
-        <text x="262" y="14" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-weight="800" fill="#c0231f">POSTPONED</text>
-        <text x="262" y="24" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.5" font-weight="700" fill="#222">TO SATURDAY</text>
-      </svg>
-      <h2>Macy&rsquo;s 100th Thanksgiving parade postponed to Saturday</h2>
-      <p class="dek">A nor&rsquo;easter with 60 mph gusts grounds New York&rsquo;s parade &mdash; its first weather delay in 100 years.</p>
-      <div class="meta"><span>SOURCE: AP &middot; NBC NEW YORK</span><span class="tag">CONFIRMED</span></div>
-    </div>
-
-    <!-- CARD 2 路 Mumbai -->
-    <div class="card w4" style="border-top-color:#1f6b43">
-      <svg class="scene" viewBox="0 0 320 56" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="skyIndia" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#f8cf78"/><stop offset="1" stop-color="#e07b39"/>
-          </linearGradient>
-        </defs>
-        <rect width="320" height="56" fill="url(#skyIndia)"/>
-        <circle cx="42" cy="14" r="10" fill="#ffe9a8"/>
-        <rect x="0" y="47" width="320" height="9" fill="#a9552c"/>
-        <g fill="#3b2a20">
-          <rect x="112" y="18" width="10" height="32"/><rect x="198" y="18" width="10" height="32"/>
-          <rect x="118" y="22" width="84" height="28"/>
-          <rect x="122" y="16" width="8" height="8"/><rect x="190" y="16" width="8" height="8"/>
-          <rect x="140" y="12" width="6" height="10"/><rect x="174" y="12" width="6" height="10"/>
+        <g fill="#26324b">
+          <path d="M42 112 q12 -20 24 0 z"/><rect x="52" y="112" width="3" height="10"/>
+          <path d="M84 114 q11 -18 22 0 z"/><rect x="94" y="114" width="3" height="8"/>
         </g>
-        <path d="M142 50 L142 34 A18 18 0 0 1 178 34 L178 50 Z" fill="#f6d9a0"/>
-        <path d="M142 50 L142 34 A18 18 0 0 1 178 34 L178 50" fill="none" stroke="#8a4a24" stroke-width="1.2"/>
-        <g stroke="#f2b877" stroke-width="1" opacity=".55">
-          <line x1="10" y1="50" x2="60" y2="50"/><line x1="90" y1="53" x2="150" y2="53"/>
-          <line x1="190" y1="51" x2="250" y2="51"/><line x1="270" y1="53" x2="312" y2="53"/>
-        </g>
+        <rect x="0" y="108" width="326" height="16" fill="#b9c8d5"/>
         <g>
-          <rect x="216" y="44" width="4" height="9" fill="#f7f0de"/><ellipse cx="218" cy="41" rx="2.2" ry="3" fill="#ffd166"/>
-          <rect x="228" y="44" width="4" height="9" fill="#f7f0de"/><ellipse cx="230" cy="41" rx="2.2" ry="3" fill="#ffd166"/>
-          <rect x="240" y="44" width="4" height="9" fill="#f7f0de"/><ellipse cx="242" cy="41" rx="2.2" ry="3" fill="#ffd166"/>
-          <rect x="252" y="44" width="4" height="9" fill="#f7f0de"/><ellipse cx="254" cy="41" rx="2.2" ry="3" fill="#ffd166"/>
-          <rect x="264" y="44" width="4" height="9" fill="#f7f0de"/><ellipse cx="266" cy="41" rx="2.2" ry="3" fill="#ffd166"/>
-          <rect x="276" y="44" width="4" height="9" fill="#f7f0de"/><ellipse cx="278" cy="41" rx="2.2" ry="3" fill="#ffd166"/>
-          <rect x="288" y="44" width="4" height="9" fill="#f7f0de"/><ellipse cx="290" cy="41" rx="2.2" ry="3" fill="#ffd166"/>
-        </g>
-        <g>
-          <rect x="10" y="8" width="24" height="5" fill="#f28c28"/><rect x="10" y="13" width="24" height="5" fill="#ffffff"/><rect x="10" y="18" width="24" height="5" fill="#1f6b43"/>
-          <circle cx="22" cy="15.5" r="2.6" fill="#1c3f94"/>
-        </g>
-        <rect x="232" y="10" width="76" height="20" rx="2" fill="#1f5c3a"/>
-        <text x="270" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="800" fill="#fff">18 YEARS</text>
-      </svg>
-      <h2>India marks 18 years since the 26/11 Mumbai attacks</h2>
-      <p class="dek">Tributes across the country remember the 2008 assault that killed 166 people.</p>
-      <div class="meta"><span>SOURCE: PIB &middot; PTI</span><span class="tag">OFFICIAL</span></div>
-    </div>
-
-    <!-- CARD 3 路 Chess -->
-    <div class="card w4" style="border-top-color:#174c86">
-      <svg class="scene" viewBox="0 0 320 56" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <pattern id="chk" width="24" height="24" patternUnits="userSpaceOnUse">
-            <rect width="24" height="24" fill="#fdf8ea"/>
-            <rect width="12" height="12" fill="#2e2e2e"/>
-            <rect x="12" y="12" width="12" height="12" fill="#2e2e2e"/>
-          </pattern>
-        </defs>
-        <rect width="320" height="56" fill="#f3ead6"/>
-        <rect x="8" y="4" width="120" height="48" fill="url(#chk)" stroke="#1a1a1a" stroke-width="1.5"/>
-        <g fill="#111">
-          <rect x="140" y="42" width="20" height="4"/><rect x="146" y="30" width="8" height="12"/>
-          <path d="M144 30 Q144 22 150 20 Q156 22 156 30 Z"/>
-          <rect x="148" y="12" width="4" height="9"/><rect x="144" y="16" width="12" height="3"/>
-        </g>
-        <g fill="#fffdf7" stroke="#222" stroke-width="1.2">
-          <rect x="176" y="42" width="20" height="4"/><rect x="182" y="30" width="8" height="12"/>
-          <path d="M180 30 Q180 22 186 20 Q192 22 192 30 Z"/>
-          <rect x="184" y="12" width="4" height="9"/><rect x="180" y="16" width="12" height="3"/>
-        </g>
-        <g>
-          <rect x="214" y="5" width="44" height="22" rx="3" fill="#fffdf7" stroke="#333" stroke-width="1.4"/>
-          <rect x="250" y="3" width="8" height="6" fill="#c0231f"/>
-          <text x="236" y="21" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#111">1:32</text>
-          <rect x="264" y="5" width="44" height="22" rx="3" fill="#fffdf7" stroke="#333" stroke-width="1.4"/>
-          <rect x="300" y="3" width="8" height="6" fill="#c0231f"/>
-          <text x="286" y="21" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="700" fill="#111">1:32</text>
-        </g>
-        <rect x="214" y="34" width="46" height="16" fill="#c0231f"/>
-        <text x="237" y="46" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-weight="800" fill="#fff">GAME 3</text>
-        <text x="286" y="44" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.5" font-weight="700" fill="#174c86">LEVEL 1-1</text>
-        <text x="286" y="52" text-anchor="middle" font-family="Segoe UI, Arial" font-size="5.8" fill="#555">GUKESH &middot; SINDAROV</text>
-      </svg>
-      <h2>Gukesh meets Sindarov in Game 3, match level at 1-1</h2>
-      <p class="dek">The World Chess Championship final in Geneva is all square after two draws.</p>
-      <div class="meta"><span>SOURCE: FIDE &middot; THE HINDU</span><span class="tag">CONFIRMED</span></div>
-    </div>
-
-    <!-- CARD 4 路 Tariffs -->
-    <div class="card w4" style="border-top-color:#d9822b">
-      <svg class="scene" viewBox="0 0 320 56" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="320" height="56" fill="#cfe8f6"/>
-        <rect x="0" y="34" width="320" height="22" fill="#2b6cb0"/>
-        <g stroke="#7fb2d9" stroke-width="1" opacity=".7">
-          <line x1="10" y1="44" x2="80" y2="44"/><line x1="120" y1="49" x2="210" y2="49"/><line x1="250" y1="43" x2="312" y2="43"/>
-        </g>
-        <g stroke="#17324a" stroke-width="1">
-          <rect x="12" y="26" width="34" height="8" fill="#d93a2b"/><rect x="48" y="26" width="34" height="8" fill="#f5b82e"/>
-          <rect x="84" y="26" width="34" height="8" fill="#2f8f5b"/><rect x="120" y="26" width="34" height="8" fill="#2b6cb0"/>
-          <rect x="12" y="18" width="34" height="8" fill="#f5b82e"/><rect x="48" y="18" width="34" height="8" fill="#2f8f5b"/>
-          <rect x="84" y="18" width="34" height="8" fill="#d93a2b"/><rect x="120" y="18" width="34" height="8" fill="#f5b82e"/>
-          <rect x="12" y="10" width="34" height="8" fill="#2b6cb0"/><rect x="48" y="10" width="34" height="8" fill="#d93a2b"/>
-          <rect x="84" y="10" width="34" height="8" fill="#f5b82e"/><rect x="120" y="10" width="34" height="8" fill="#2f8f5b"/>
-        </g>
-        <g fill="#24303c">
-          <rect x="166" y="18" width="6" height="24"/><rect x="160" y="16" width="34" height="4"/>
-          <path d="M194 20 L210 26 L194 26 Z"/><rect x="194" y="24" width="3" height="12"/>
-        </g>
-        <g fill="#24303c">
-          <path d="M226 42 L286 42 L276 50 L236 50 Z"/><rect x="246" y="30" width="30" height="12"/>
-        </g>
-        <circle cx="252" cy="13" r="12" fill="#fffdf7" stroke="#c0231f" stroke-width="2"/>
-        <text x="252" y="17" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="800" fill="#c0231f">15%</text>
-        <circle cx="292" cy="13" r="12" fill="#c0231f"/>
-        <text x="292" y="17" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="800" fill="#fff">35%</text>
-      </svg>
-      <h2>US proposes 15&ndash;35% tariffs on 14 economies</h2>
-      <p class="dek">The Section 301 plan covers China, the EU, Japan, India and Vietnam; partners rejected it.</p>
-      <div class="meta"><span>SOURCE: USTR &middot; REUTERS</span><span class="tag">OFFICIAL</span></div>
-    </div>
-
-    <!-- CARD 5 路 EU budget -->
-    <div class="card w4" style="border-top-color:#174c86">
-      <svg class="scene" viewBox="0 0 320 56" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="320" height="56" fill="#1c4d87"/>
-        <g fill="#f5c542">
-          <text x="62" y="8" font-size="7" text-anchor="middle">&#9733;</text><text x="79" y="12" font-size="7" text-anchor="middle">&#9733;</text>
-          <text x="89" y="24" font-size="7" text-anchor="middle">&#9733;</text><text x="86" y="38" font-size="7" text-anchor="middle">&#9733;</text>
-          <text x="72" y="48" font-size="7" text-anchor="middle">&#9733;</text><text x="54" y="48" font-size="7" text-anchor="middle">&#9733;</text>
-          <text x="40" y="38" font-size="7" text-anchor="middle">&#9733;</text><text x="37" y="24" font-size="7" text-anchor="middle">&#9733;</text>
-          <text x="46" y="12" font-size="7" text-anchor="middle">&#9733;</text><text x="24" y="18" font-size="7" text-anchor="middle">&#9733;</text>
-          <text x="20" y="32" font-size="7" text-anchor="middle">&#9733;</text><text x="28" y="44" font-size="7" text-anchor="middle">&#9733;</text>
-        </g>
-        <text x="126" y="30" font-family="Segoe UI, Arial" font-size="24" font-weight="800" fill="#fff">&#8364;1.6tn</text>
-        <text x="128" y="40" font-family="Segoe UI, Arial" font-size="6.5" letter-spacing="1" fill="#d7e6f6">2028&ndash;2034 BUDGET</text>
-        <rect x="128" y="44" width="92" height="10" fill="#f5b82e"/>
-        <text x="174" y="51.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="6.5" font-weight="700" fill="#1c3f60">&#8364;45bn UKRAINE LOAN</text>
-        <g>
-          <rect x="240" y="40" width="10" height="16" fill="#7fb2e5"/><rect x="254" y="32" width="10" height="24" fill="#f5b82e"/>
-          <rect x="268" y="24" width="10" height="32" fill="#7fb2e5"/><rect x="282" y="14" width="10" height="42" fill="#f5b82e"/>
-          <rect x="296" y="6" width="10" height="50" fill="#fff"/>
-          <line x1="234" y1="56" x2="312" y2="56" stroke="#fff" stroke-width="1.5"/>
+          <rect x="196" y="94" width="124" height="20" fill="#fffdf7" stroke="#16181d" stroke-width="1.2"/>
+          <text x="258" y="108" font-family="Arial Narrow, Arial" font-size="9" font-weight="700" text-anchor="middle" fill="#c8322b" letter-spacing=".4">POSTPONED TO SATURDAY</text>
         </g>
       </svg>
-      <h2>EU opens &euro;1.6tn budget talks with &euro;45bn Ukraine loan</h2>
-      <p class="dek">Leaders meet in Brussels to negotiate the 2028&ndash;2034 budget and a loan for Kyiv.</p>
-      <div class="meta"><span>SOURCE: EUROPEAN COUNCIL &middot; REUTERS</span><span class="tag">CONFIRMED</span></div>
-    </div>
+      <div class="body">
+        <h3>Macy&rsquo;s 100th parade postponed to Saturday by nor&rsquo;easter</h3>
+        <p>60 mph gusts ground the giant balloons in New York &mdash; the first weather delay in the parade&rsquo;s 100 years.</p>
+        <div class="meta">AP &middot; NBC NEW YORK <span class="badge">CONFIRMED</span></div>
+      </div>
+    </article>
 
-    <!-- CARD 6 路 Houthi (dark) -->
-    <div class="card w4" style="border-top-color:#0f2d47">
-      <svg class="scene" viewBox="0 0 320 56" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="320" height="56" fill="#0b1b2b"/>
-        <g fill="#173a57" opacity=".75">
-          <polygon points="30,56 62,4 74,4 52,56"/><polygon points="96,56 128,4 140,4 118,56"/><polygon points="210,56 242,4 254,4 232,56"/>
+    <article class="card lead">
+      <span class="regtag sa">SOUTH ASIA</span><span class="cnum">02</span>
+      <svg class="scene" viewBox="0 0 326 124" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7c27a"/><stop offset=".55" stop-color="#e3885f"/><stop offset="1" stop-color="#6d4160"/></linearGradient></defs>
+        <rect width="326" height="124" fill="url(#sky2)"/>
+        <circle cx="268" cy="30" r="16" fill="#ffe8ae" opacity=".85"/>
+        <rect y="86" width="326" height="38" fill="#2b3552"/>
+        <g fill="#1d2742">
+          <rect x="56" y="58" width="164" height="34"/>
+          <path d="M118 58 q18 -30 40 0 z"/>
+          <rect x="78" y="46" width="12" height="12"/><rect x="186" y="46" width="12" height="12"/>
         </g>
-        <g fill="#050b12">
-          <rect x="0" y="38" width="320" height="18"/>
-          <rect x="10" y="20" width="10" height="24"/><rect x="26" y="26" width="18" height="18"/>
-          <rect x="48" y="14" width="8" height="30"/><rect x="60" y="24" width="26" height="20"/>
-          <rect x="92" y="30" width="16" height="14"/><rect x="112" y="18" width="7" height="26"/>
-          <rect x="124" y="28" width="24" height="16"/><rect x="154" y="22" width="9" height="22"/>
-          <rect x="168" y="32" width="22" height="12"/><rect x="196" y="20" width="7" height="24"/>
-          <rect x="208" y="26" width="20" height="18"/><rect x="234" y="16" width="8" height="28"/>
-          <rect x="248" y="28" width="24" height="16"/><rect x="276" y="22" width="8" height="22"/><rect x="290" y="30" width="20" height="14"/>
+        <path d="M124 92 L124 68 q16 -14 32 0 L156 92 Z" fill="#f2a45c" opacity=".55"/>
+        <g>
+          <rect x="34" y="98" width="4" height="16" fill="#f7ead0"/><ellipse cx="36" cy="94" rx="3" ry="6" fill="#ffd34d"/>
+          <rect x="52" y="100" width="4" height="14" fill="#f7ead0"/><ellipse cx="54" cy="96" rx="3" ry="6" fill="#ffd34d"/>
+          <rect x="70" y="98" width="4" height="16" fill="#f7ead0"/><ellipse cx="72" cy="94" rx="3" ry="6" fill="#ffd34d"/>
+          <rect x="238" y="100" width="4" height="14" fill="#f7ead0"/><ellipse cx="240" cy="96" rx="3" ry="6" fill="#ffd34d"/>
+          <rect x="256" y="98" width="4" height="16" fill="#f7ead0"/><ellipse cx="258" cy="94" rx="3" ry="6" fill="#ffd34d"/>
         </g>
-        <g fill="#ff9d2e">
-          <rect x="12" y="28" width="2" height="2"/><rect x="30" y="32" width="2" height="2"/><rect x="50" y="22" width="2" height="2"/>
-          <rect x="64" y="30" width="2" height="2"/><rect x="114" y="24" width="2" height="2"/><rect x="128" y="34" width="2" height="2"/>
-          <rect x="158" y="28" width="2" height="2"/><rect x="198" y="26" width="2" height="2"/><rect x="238" y="22" width="2" height="2"/>
-          <rect x="252" y="34" width="2" height="2"/><rect x="280" y="28" width="2" height="2"/>
+        <g fill="#101827">
+          <circle cx="228" cy="104" r="4"/><rect x="224" y="108" width="8" height="14"/>
+          <circle cx="246" cy="102" r="4"/><rect x="242" y="106" width="8" height="16"/>
         </g>
-        <path d="M8 50 Q120 44 196 16" stroke="#ffb347" stroke-width="2.4" fill="none" stroke-dasharray="5 3"/>
-        <g transform="translate(198,14) rotate(-22)">
-          <rect x="-10" y="-2.5" width="20" height="5" rx="2" fill="#f3f3f3"/>
-          <polygon points="10,-2.5 16,0 10,2.5" fill="#e8e8e8"/>
-          <polygon points="-10,-2 -18,0 -10,2" fill="#ff7a1a"/>
-        </g>
-        <g stroke="#ffe28a" stroke-width="1.6">
-          <line x1="252" y1="10" x2="272" y2="6"/><line x1="254" y1="16" x2="274" y2="18"/>
-          <line x1="250" y1="13" x2="262" y2="24"/><line x1="256" y1="13" x2="266" y2="2"/>
-        </g>
-        <circle cx="256" cy="13" r="3" fill="#fff4c2"/>
-        <rect x="196" y="38" width="62" height="12" fill="#c0231f"/>
-        <text x="227" y="47" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.5" font-weight="800" fill="#fff">INTERCEPTED</text>
+        <text x="206" y="72" font-family="Georgia, serif" font-size="19" font-weight="700" fill="#fff3d6" letter-spacing="1">18 YEARS</text>
       </svg>
-      <h2>Houthis claim strikes on Ras Tanura and Riyadh</h2>
-      <p class="dek">Saudi air defences intercepted two ballistic missiles aimed at Riyadh.</p>
-      <div class="meta"><span>SOURCE: THE NATIONAL &middot; AGBI</span><span class="tag">CLAIM</span></div>
-    </div>
+      <div class="body">
+        <h3>India marks 18 years since the 26/11 Mumbai attacks</h3>
+        <p>Candlelight vigils and tributes across the country honour the 166 people killed in 2008.</p>
+        <div class="meta">PIB &middot; PTI <span class="badge off">OFFICIAL</span></div>
+      </div>
+    </article>
 
-    <!-- CARD 7 路 Gaza (dark) -->
-    <div class="card w4 small" style="border-top-color:#5d3591">
-      <svg class="scene" viewBox="0 0 320 50" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="gazaSky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#232a52"/><stop offset="1" stop-color="#0d0f1f"/>
-          </linearGradient>
-        </defs>
-        <rect width="320" height="50" fill="url(#gazaSky)"/>
-        <path d="M24 10 A9 9 0 1 0 34 22 A7 7 0 1 1 24 10 Z" fill="#f7f0de"/>
-        <g fill="#07080f">
-          <path d="M0 50 L0 36 L14 34 L20 40 L28 32 L40 36 L48 28 L60 34 L70 30 L82 38 L92 34 L104 40 L118 32 L130 36 L140 30 L152 38 L164 34 L176 40 L190 32 L202 36 L214 30 L226 38 L240 33 L252 36 L264 30 L276 38 L288 34 L300 38 L312 32 L320 35 L320 50 Z"/>
+    <article class="card lead">
+      <span class="regtag eu">EUROPE</span><span class="cnum">03</span>
+      <svg class="scene" viewBox="0 0 326 124" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="326" height="124" fill="#efe5c9"/>
+        <rect x="0" y="0" width="326" height="6" fill="#2e7d4f"/>
+        <defs><pattern id="chk3" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" fill="#f0e2c4"/><rect width="12" height="12" fill="#2e7d4f"/><rect x="12" y="12" width="12" height="12" fill="#2e7d4f"/></pattern></defs>
+        <rect x="18" y="14" width="96" height="96" fill="url(#chk3)" stroke="#16181d" stroke-width="2"/>
+        <g fill="#fffdf7" stroke="#16181d" stroke-width="1">
+          <circle cx="54" cy="48" r="7"/><path d="M47 54 h14 v8 h-14z"/>
+          <path d="M42 92 q12 -14 24 0 v8 h-24z"/>
         </g>
-        <circle cx="210" cy="34" r="17" fill="#ff8a2a" opacity=".95"/>
-        <circle cx="210" cy="34" r="10" fill="#ffd27a"/>
-        <circle cx="206" cy="30" r="5" fill="#fff6d8"/>
-        <g fill="#6b6b78" opacity=".9">
-          <circle cx="196" cy="18" r="8"/><circle cx="208" cy="14" r="9"/><circle cx="222" cy="16" r="8"/><circle cx="234" cy="21" r="7"/>
+        <g fill="#16181d">
+          <circle cx="80" cy="66" r="6"/><rect x="74" y="72" width="12" height="9"/>
+          <path d="M88 102 q8 -10 16 0 v6 h-16z"/>
         </g>
-        <g stroke="#ffcf6b" stroke-width="1.3">
-          <line x1="210" y1="8" x2="210" y2="2"/><line x1="228" y1="17" x2="236" y2="13"/><line x1="192" y1="19" x2="184" y2="15"/>
+        <g>
+          <rect x="140" y="16" width="72" height="42" rx="4" fill="#1b2440"/>
+          <rect x="146" y="22" width="60" height="30" rx="2" fill="#f4efdf"/>
+          <circle cx="176" cy="37" r="12" fill="#fff" stroke="#16181d" stroke-width="1.2"/>
+          <path d="M176 37 L182 30" stroke="#c8322b" stroke-width="2"/>
+          <text x="176" y="56" font-size="6" text-anchor="middle" fill="#fff" font-family="Arial">1:32</text>
         </g>
-        <rect x="8" y="34" width="52" height="13" fill="#c0231f"/>
-        <text x="34" y="43.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.5" font-weight="800" fill="#fff">8 KILLED</text>
+        <g>
+          <rect x="228" y="62" width="72" height="42" rx="4" fill="#c8322b"/>
+          <rect x="234" y="68" width="60" height="30" rx="2" fill="#f4efdf"/>
+          <circle cx="264" cy="83" r="12" fill="#fff" stroke="#16181d" stroke-width="1.2"/>
+          <path d="M264 83 L257 88" stroke="#16181d" stroke-width="2"/>
+          <text x="264" y="102" font-size="6" text-anchor="middle" fill="#fff" font-family="Arial">1:29</text>
+        </g>
+        <text x="140" y="72" font-family="Arial" font-size="11" font-weight="700" fill="#16181d" letter-spacing=".5">GAME 3</text>
+        <rect x="140" y="78" width="62" height="14" fill="#c8322b"/>
+        <text x="171" y="88" font-size="8" fill="#fff" text-anchor="middle" font-weight="700" font-family="Arial">LEVEL 1-1</text>
       </svg>
-      <h2>Israeli strikes kill eight in Gaza; Hamas security chief dead</h2>
-      <p class="dek">Overnight strikes hit across the territory; Muhammad Abu al-Ouf was confirmed killed.</p>
-      <div class="meta"><span>SOURCE: AP &middot; AL JAZEERA</span><span class="tag">CONFIRMED</span></div>
-    </div>
+      <div class="body">
+        <h3>Gukesh and Sindarov level 1-1 after Game 3 draw</h3>
+        <p>The World Chess Championship in Geneva heads into Game 4 with the match all square.</p>
+        <div class="meta">FIDE &middot; THE HINDU <span class="badge">CONFIRMED</span></div>
+      </div>
+    </article>
+  </div>
 
-    <!-- CARD 8 路 Ukraine airbase -->
-    <div class="card w4 small" style="border-top-color:#2b6cb0">
-      <svg class="scene" viewBox="0 0 320 50" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="dawn" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#a9d0ea"/><stop offset="1" stop-color="#f6d27a"/>
-          </linearGradient>
-        </defs>
-        <rect width="320" height="50" fill="url(#dawn)"/>
-        <circle cx="270" cy="12" r="7" fill="#fff2b0"/>
-        <rect x="0" y="40" width="320" height="10" fill="#5b6772"/>
-        <g stroke="#fff" stroke-width="1">
-          <line x1="10" y1="45" x2="34" y2="45"/><line x1="60" y1="45" x2="84" y2="45"/><line x1="110" y1="45" x2="134" y2="45"/>
-          <line x1="160" y1="45" x2="184" y2="45"/><line x1="210" y1="45" x2="234" y2="45"/><line x1="260" y1="45" x2="284" y2="45"/>
-        </g>
-        <g fill="#24303c">
-          <path d="M30 16 L62 22 L56 26 L38 24 L24 30 L20 24 Z"/>
-          <path d="M98 26 L128 30 L122 34 L106 32 L94 38 L90 32 Z"/>
-          <path d="M160 14 L190 20 L184 24 L168 22 L154 28 L150 22 Z"/>
-        </g>
-        <g stroke="#24303c" stroke-width="1.4" fill="none">
-          <line x1="232" y1="10" x2="248" y2="14"/><line x1="248" y1="14" x2="258" y2="8"/>
-          <circle cx="232" cy="10" r="2"/><circle cx="258" cy="8" r="2"/><circle cx="248" cy="14" r="2.6"/>
-        </g>
+  <div class="small-row">
+    <article class="card small">
+      <span class="regtag">NORTH AMERICA</span><span class="cnum">04</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="192" height="70" fill="#cfe4f2"/>
+        <rect y="52" width="192" height="18" fill="#9fb3c3"/>
         <g>
-          <polygon points="236,40 254,40 246,18 240,18" fill="#ff7a1a"/>
-          <polygon points="242,40 250,40 246,24" fill="#ffd166"/>
-          <circle cx="246" cy="12" r="7" fill="#5a5a5a" opacity=".7"/><circle cx="238" cy="6" r="5" fill="#6d6d6d" opacity=".6"/>
+          <rect x="6" y="38" width="34" height="14" fill="#c8322b"/><rect x="8" y="24" width="34" height="14" fill="#1f5fa8"/><rect x="42" y="38" width="34" height="14" fill="#e9b21f"/><rect x="44" y="24" width="34" height="14" fill="#2e7d4f"/>
+          <g stroke="#ffffff" stroke-width=".8" opacity=".6"><line x1="12" y1="41" x2="34" y2="41"/><line x1="14" y1="27" x2="36" y2="27"/><line x1="48" y1="41" x2="70" y2="41"/><line x1="50" y1="27" x2="72" y2="27"/></g>
         </g>
-        <rect x="8" y="4" width="104" height="15" fill="#17324a"/>
-        <text x="60" y="14.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="700" fill="#fff">3 MiG-31 &middot; 2 Su-34</text>
+        <g fill="#8a4f3a"><rect x="92" y="28" width="58" height="26"/><g stroke="#f2d8c4" stroke-width=".8"><line x1="92" y1="36" x2="150" y2="36"/><line x1="92" y1="44" x2="150" y2="44"/><line x1="106" y1="28" x2="106" y2="54"/><line x1="120" y1="28" x2="120" y2="54"/><line x1="134" y1="28" x2="134" y2="54"/></g></g>
+        <circle cx="166" cy="24" r="18" fill="#e9b21f"/><text x="166" y="31" font-size="19" font-weight="700" text-anchor="middle" fill="#16181d" font-family="Arial">%</text>
+        <path d="M86 6 L86 48 M86 6 L126 6" stroke="#16181d" stroke-width="2" fill="none"/>
+        <text x="92" y="66" font-size="6.4" font-weight="700" fill="#16181d" font-family="Arial">15&ndash;35% ON 14 ECONOMIES</text>
       </svg>
-      <h2>Ukraine strikes Savasleyka airbase, damaging five jets</h2>
-      <p class="dek">The General Staff says three MiG-31s and two Su-34s were damaged in Nizhny Novgorod.</p>
-      <div class="meta"><span>SOURCE: AL JAZEERA &middot; BBC</span><span class="tag">REPORTED</span></div>
-    </div>
+      <div class="body">
+        <h3>US proposes 15&ndash;35% tariffs on 14 economies</h3>
+        <p>Section 301 move over excess capacity draws rejections.</p>
+        <div class="meta">USTR &middot; REUTERS <span class="badge off">OFFICIAL</span></div>
+      </div>
+    </article>
 
-    <!-- CARD 9 路 Ofgem -->
-    <div class="card w4 small" style="border-top-color:#2f8f5b">
-      <svg class="scene" viewBox="0 0 320 50" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="320" height="50" fill="#e6f3ea"/>
-        <rect x="14" y="8" width="76" height="34" rx="4" fill="#fffdf7" stroke="#2b2b2b" stroke-width="1.6"/>
-        <circle cx="46" cy="24" r="13" fill="#fff" stroke="#333" stroke-width="1.2"/>
-        <g stroke="#777" stroke-width=".8">
-          <line x1="46" y1="12" x2="46" y2="15"/><line x1="58" y1="24" x2="55" y2="24"/><line x1="46" y1="36" x2="46" y2="33"/><line x1="34" y1="24" x2="37" y2="24"/>
+    <article class="card small">
+      <span class="regtag eu">EUROPE</span><span class="cnum">05</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="192" height="70" fill="#eaf1f8"/>
+        <rect x="8" y="8" width="72" height="46" fill="#1f5fa8"/>
+        <g fill="#f7d34d">
+          <circle cx="44" cy="14" r="2.4"/><circle cx="32" cy="19" r="2.4"/><circle cx="26" cy="31" r="2.4"/><circle cx="32" cy="43" r="2.4"/><circle cx="44" cy="48" r="2.4"/><circle cx="56" cy="43" r="2.4"/><circle cx="62" cy="31" r="2.4"/><circle cx="56" cy="19" r="2.4"/>
         </g>
-        <line x1="46" y1="24" x2="53" y2="17" stroke="#c0231f" stroke-width="2"/>
-        <circle cx="46" cy="24" r="2" fill="#222"/>
-        <rect x="24" y="34" width="56" height="5" fill="#d8e6dc"/>
-        <text x="118" y="30" font-family="Georgia, serif" font-size="25" font-weight="800" fill="#111">&pound;2,166</text>
-        <text x="120" y="40" font-family="Segoe UI, Arial" font-size="6.6" letter-spacing="1.1" fill="#2f6b4a">TYPICAL ANNUAL BILL</text>
-        <g>
-          <polygon points="248,40 266,40 266,24 276,24 257,6 238,24 248,24" fill="#c0231f"/>
-          <text x="257" y="47" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" font-weight="800" fill="#c0231f">+26%</text>
-        </g>
-        <g>
-          <circle cx="300" cy="14" r="9" fill="#f5b82e" stroke="#b8860b" stroke-width="1"/>
-          <text x="300" y="18" text-anchor="middle" font-family="Georgia, serif" font-size="10" font-weight="700" fill="#5a4200">&pound;</text>
-        </g>
+        <text x="44" y="66" font-size="7" font-weight="700" text-anchor="middle" fill="#1f5fa8" font-family="Arial">EU BUDGET</text>
+        <g><rect x="96" y="40" width="12" height="22" fill="#e9b21f"/><rect x="112" y="30" width="12" height="32" fill="#c8322b"/><rect x="128" y="18" width="12" height="44" fill="#2e7d4f"/></g>
+        <line x1="92" y1="62" x2="146" y2="62" stroke="#16181d" stroke-width="1.2"/>
+        <g><ellipse cx="164" cy="52" rx="14" ry="5" fill="#e9b21f" stroke="#b8860b"/><ellipse cx="164" cy="45" rx="14" ry="5" fill="#f7d34d" stroke="#b8860b"/><ellipse cx="164" cy="38" rx="14" ry="5" fill="#ffe08a" stroke="#b8860b"/></g>
+        <text x="164" y="30" font-size="6.6" text-anchor="middle" fill="#16181d" font-weight="700" font-family="Arial">&euro;45bn</text>
+        <text x="164" y="64" font-size="8.6" text-anchor="middle" fill="#16181d" font-weight="700" font-family="Georgia">&euro;1.6tn</text>
       </svg>
-      <h2>Ofgem lifts energy cap 26% to &pound;2,166</h2>
-      <p class="dek">The cap rises from 1 January 2027, lifting a typical annual bill to its highest in three years.</p>
-      <div class="meta"><span>SOURCE: OFGEM &middot; BBC</span><span class="tag">OFFICIAL</span></div>
-    </div>
+      <div class="body">
+        <h3>EU leaders open &euro;1.6tn budget summit</h3>
+        <p>Special Council also weighs a &euro;45bn loan for Ukraine.</p>
+        <div class="meta">EUROPEAN COUNCIL &middot; REUTERS <span class="badge">CONFIRMED</span></div>
+      </div>
+    </article>
 
-    <!-- CARD 10 路 Cairo (dark) -->
-    <div class="card w3 tiny" style="border-top-color:#8a5a2b">
-      <svg class="scene" viewBox="0 0 240 44" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="240" height="44" fill="#10141c"/>
-        <g fill="#f5c542" opacity=".85">
-          <rect x="8" y="10" width="2" height="2"/><rect x="20" y="8" width="2" height="2"/><rect x="36" y="11" width="2" height="2"/>
-          <rect x="50" y="8" width="2" height="2"/><rect x="66" y="12" width="2" height="2"/><rect x="84" y="9" width="2" height="2"/>
-          <rect x="100" y="12" width="2" height="2"/><rect x="120" y="8" width="2" height="2"/><rect x="140" y="11" width="2" height="2"/>
-          <rect x="160" y="9" width="2" height="2"/><rect x="180" y="12" width="2" height="2"/><rect x="200" y="8" width="2" height="2"/><rect x="220" y="11" width="2" height="2"/>
-        </g>
-        <polygon points="0,44 240,44 210,24 40,24" fill="#2b3038"/>
-        <g stroke="#d8d8d8" stroke-width="1.6">
-          <line x1="100" y1="34" x2="120" y2="34"/><line x1="140" y1="34" x2="160" y2="34"/><line x1="180" y1="34" x2="200" y2="34"/>
-        </g>
-        <g>
-          <rect x="34" y="22" width="52" height="16" rx="4" fill="#7f8794"/>
-          <rect x="86" y="24" width="18" height="13" fill="#5b636e"/>
-          <circle cx="44" cy="38" r="3.4" fill="#111"/><circle cx="58" cy="38" r="3.4" fill="#111"/>
-          <circle cx="74" cy="38" r="3.4" fill="#111"/><circle cx="94" cy="38" r="3.4" fill="#111"/>
-        </g>
-        <g>
-          <polygon points="28,24 40,2 50,24" fill="#ff7a1a"/><polygon points="42,24 52,6 62,24" fill="#ffd166"/>
-          <polygon points="58,24 68,10 78,24" fill="#ff9d2e"/>
-          <circle cx="52" cy="18" r="10" fill="#ff8a2a" opacity=".35"/>
-        </g>
-        <rect x="142" y="6" width="58" height="14" fill="#c0231f"/>
-        <text x="171" y="16.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" font-weight="800" fill="#fff">31 DEAD</text>
+    <article class="card small">
+      <span class="regtag me">MIDDLE EAST</span><span class="cnum">06</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="192" height="70" fill="#101a33"/>
+        <circle cx="28" cy="12" r="6" fill="#f2e3b3" opacity=".85"/>
+        <g fill="#93a4c8"><circle cx="60" cy="8" r="1"/><circle cx="86" cy="14" r="1"/><circle cx="112" cy="6" r="1"/><circle cx="140" cy="12" r="1"/><circle cx="166" cy="8" r="1"/></g>
+        <g fill="#1f2b4a"><rect x="4" y="38" width="40" height="26"/><rect x="48" y="30" width="6" height="34"/><rect x="58" y="42" width="30" height="22"/><rect x="92" y="34" width="6" height="30"/><rect x="100" y="44" width="26" height="20"/></g>
+        <g fill="#ffb347"><circle cx="10" cy="44" r="1.4"/><circle cx="18" cy="44" r="1.4"/><circle cx="26" cy="44" r="1.4"/><circle cx="34" cy="44" r="1.4"/><circle cx="62" cy="48" r="1.4"/><circle cx="72" cy="48" r="1.4"/><circle cx="104" cy="50" r="1.4"/><circle cx="114" cy="50" r="1.4"/></g>
+        <path d="M16 22 Q 86 2 150 40" fill="none" stroke="#ff7a3d" stroke-width="2.2" stroke-dasharray="4 3"/>
+        <path d="M150 40 l11 -2 -5 9 z" fill="#ff7a3d"/>
+        <g><circle cx="158" cy="46" r="13" fill="#ff8a3d"/><circle cx="158" cy="46" r="8" fill="#ffcf5c"/><circle cx="158" cy="46" r="3.4" fill="#fff2c4"/></g>
+        <text x="148" y="14" font-size="6.4" fill="#ffcf5c" font-family="Arial" font-weight="700">INTERCEPT</text>
       </svg>
-      <h2>Cairo Ring Road tanker fire kills at least 31</h2>
-      <div class="meta"><span>SOURCE: AP &middot; FRANCE 24</span><span class="tag">CONFIRMED</span></div>
-    </div>
+      <div class="body">
+        <h3>Houthis claim strikes on Ras Tanura and Riyadh</h3>
+        <p>Saudi air defences intercept two ballistic missiles.</p>
+        <div class="meta">THE NATIONAL &middot; AGBI <span class="badge clm">CLAIM</span></div>
+      </div>
+    </article>
 
-    <!-- CARD 11 路 Sudan -->
-    <div class="card w3 tiny" style="border-top-color:#c26a1e">
-      <svg class="scene" viewBox="0 0 240 44" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="240" height="44" fill="#f2c95d"/>
-        <circle cx="206" cy="12" r="9" fill="#fff2b0"/>
-        <rect x="0" y="34" width="240" height="10" fill="#a9743c"/>
-        <g>
-          <rect x="24" y="28" width="22" height="10" fill="#8a5a2b"/><polygon points="20,28 35,16 50,28" fill="#5d3d1e"/>
-          <rect x="56" y="29" width="20" height="9" fill="#8a5a2b"/><polygon points="52,29 66,18 80,29" fill="#5d3d1e"/>
-          <rect x="90" y="28" width="22" height="10" fill="#8a5a2b"/><polygon points="86,28 101,17 116,28" fill="#5d3d1e"/>
-        </g>
-        <g fill="#6d6d6d" opacity=".8">
-          <circle cx="101" cy="14" r="5"/><circle cx="106" cy="7" r="6"/><circle cx="99" cy="3" r="4"/>
-        </g>
-        <g fill="#2b2b2b">
-          <rect x="150" y="12" width="30" height="5" rx="2"/>
-          <line x1="150" y1="14" x2="138" y2="8"/><line x1="180" y1="14" x2="192" y2="8"/>
-          <line x1="158" y1="17" x2="150" y2="24"/><line x1="172" y1="17" x2="180" y2="24"/>
-          <circle cx="138" cy="7" r="2"/><circle cx="192" cy="7" r="2"/><circle cx="150" cy="25" r="2"/><circle cx="180" cy="25" r="2"/>
-        </g>
-        <rect x="8" y="28" width="66" height="13" fill="#7a2d1f"/>
-        <text x="41" y="37.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" font-weight="800" fill="#fff">19 CIVILIANS</text>
+    <article class="card small">
+      <span class="regtag me">MIDDLE EAST</span><span class="cnum">07</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="192" height="70" fill="#141c2e"/>
+        <circle cx="42" cy="13" r="7" fill="#e8e3d1" opacity=".9"/>
+        <g fill="#2a3145"><path d="M6 66 L6 38 h18 v-8 h14 v10 h14 v26z"/><path d="M120 66 L120 30 h10 v6 h12 V24 h16 v42z"/></g>
+        <g fill="#f2a23c" opacity=".75"><rect x="12" y="46" width="5" height="4"/><rect x="22" y="46" width="5" height="4"/><rect x="128" y="38" width="5" height="4"/><rect x="142" y="34" width="5" height="4"/></g>
+        <path d="M0 66 L18 54 L34 63 L52 51 L70 66z" fill="#4a4f62"/>
+        <path d="M58 66 L84 49 L104 63 L120 55 L142 66z" fill="#3b4155"/>
+        <g><path d="M92 66 q-8 -18 4 -30 q2 12 8 14 q2 -10 8 -16 q2 20 -2 32z" fill="#ff8a2a"/><path d="M98 66 q-4 -10 3 -18 q1 8 6 9 q1 -6 4 -9 q1 14 -1 18z" fill="#ffd15a"/></g>
+        <g fill="#6b7189" opacity=".5"><circle cx="108" cy="20" r="8"/><circle cx="122" cy="12" r="10"/><circle cx="136" cy="8" r="7"/></g>
       </svg>
-      <h2>Sudan drone strikes kill 19 civilians in Blue Nile</h2>
-      <div class="meta"><span>SOURCE: AL JAZEERA &middot; ANADOLU</span><span class="tag">CONFIRMED</span></div>
-    </div>
+      <div class="body">
+        <h3>Israeli strikes kill eight across Gaza</h3>
+        <p>Hamas security chief Abu al-Ouf confirmed dead.</p>
+        <div class="meta">AP &middot; AL JAZEERA <span class="badge">CONFIRMED</span></div>
+      </div>
+    </article>
 
-    <!-- CARD 12 路 Bangladesh -->
-    <div class="card w3 tiny" style="border-top-color:#96345c">
-      <svg class="scene" viewBox="0 0 240 44" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="240" height="44" fill="#2f8f5b"/>
-        <g fill="#1f6b43">
-          <rect x="170" y="6" width="10" height="26"/><rect x="184" y="2" width="8" height="30"/><rect x="196" y="8" width="12" height="24"/>
-        </g>
-        <g>
-          <rect x="20" y="24" width="26" height="14" fill="#fffdf7" stroke="#b3261e" stroke-width="1"/>
-          <text x="33" y="33.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="6.4" font-weight="800" fill="#b3261e">Tk 17,000</text>
-          <rect x="58" y="18" width="30" height="14" fill="#fffdf7" stroke="#1c4d87" stroke-width="1"/>
-          <text x="73" y="27.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="6.2" font-weight="800" fill="#1c4d87">36% RAISE</text>
-        </g>
-        <g>
-          <circle cx="18" cy="30" r="3.4" fill="#8d5524"/><rect x="14" y="34" width="8" height="10" fill="#d93a2b"/>
-          <circle cx="34" cy="30" r="3.4" fill="#c68642"/><rect x="30" y="34" width="8" height="10" fill="#f5b82e"/>
-          <circle cx="50" cy="30" r="3.4" fill="#8d5524"/><rect x="46" y="34" width="8" height="10" fill="#2b6cb0"/>
-          <circle cx="66" cy="30" r="3.4" fill="#c68642"/><rect x="62" y="34" width="8" height="10" fill="#d93a2b"/>
-          <circle cx="82" cy="30" r="3.4" fill="#8d5524"/><rect x="78" y="34" width="8" height="10" fill="#f5b82e"/>
-          <circle cx="106" cy="30" r="3.4" fill="#c68642"/><rect x="102" y="34" width="8" height="10" fill="#2b6cb0"/>
-          <circle cx="122" cy="30" r="3.4" fill="#8d5524"/><rect x="118" y="34" width="8" height="10" fill="#d93a2b"/>
-          <circle cx="138" cy="30" r="3.4" fill="#c68642"/><rect x="134" y="34" width="8" height="10" fill="#f5b82e"/>
-          <circle cx="154" cy="30" r="3.4" fill="#8d5524"/><rect x="150" y="34" width="8" height="10" fill="#2b6cb0"/>
-        </g>
-        <g stroke="#111" stroke-width="1.2">
-          <line x1="18" y1="30" x2="12" y2="20"/><line x1="50" y1="30" x2="44" y2="20"/><line x1="82" y1="30" x2="76" y2="20"/><line x1="122" y1="30" x2="116" y2="20"/><line x1="154" y1="30" x2="160" y2="20"/>
-        </g>
-        <polygon points="160,30 172,26 168,34" fill="#f5b82e"/>
+    <article class="card small">
+      <span class="regtag eu">EUROPE</span><span class="cnum">08</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="sky8" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9d4ea"/><stop offset="1" stop-color="#efb26f"/></linearGradient></defs>
+        <rect width="192" height="70" fill="url(#sky8)"/>
+        <rect y="48" width="192" height="22" fill="#5d6b5a"/>
+        <rect x="0" y="58" width="192" height="4" fill="#3b4550"/>
+        <path d="M10 48 L10 32 L44 32 L44 48 Z" fill="#7d8a99"/>
+        <g fill="#2b3442"><path d="M66 30 L94 37 L68 41 L58 36 Z"/><path d="M108 18 L140 27 L110 32 L100 26 Z"/></g>
+        <g stroke="#16181d" stroke-width="1.4" fill="none"><path d="M36 12 h12 M42 6 v12"/><circle cx="36" cy="12" r="2.4" fill="#16181d"/><circle cx="48" cy="12" r="2.4" fill="#16181d"/><circle cx="42" cy="6" r="1.8" fill="#16181d"/><circle cx="42" cy="18" r="1.8" fill="#16181d"/></g>
+        <path d="M140 48 q-6 -14 2 -22 q2 8 6 9 q1 -7 5 -10 q1 14 -1 23z" fill="#ff8a2a"/>
+        <path d="M145 48 q-3 -8 2 -13 q1 6 4 7 q1 -5 3 -6 q1 9 -1 12z" fill="#ffd15a"/>
+        <circle cx="152" cy="18" r="7" fill="#6a7383" opacity=".55"/>
       </svg>
-      <h2>Bangladesh garment workers protest Tk 17,000 wage</h2>
-      <div class="meta"><span>SOURCE: AP &middot; BUSINESS STANDARD</span><span class="tag">CONFIRMED</span></div>
-    </div>
-
-    <!-- CARD 13 路 Hera (dark) -->
-    <div class="card w3 tiny" style="border-top-color:#365467">
-      <svg class="scene" viewBox="0 0 240 44" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="240" height="44" fill="#0a0f26"/>
-        <g fill="#fff">
-          <circle cx="12" cy="8" r=".9"/><circle cx="30" cy="4" r=".7"/><circle cx="52" cy="10" r=".8"/><circle cx="70" cy="3" r=".7"/>
-          <circle cx="90" cy="7" r=".9"/><circle cx="118" cy="4" r=".7"/><circle cx="150" cy="8" r=".8"/><circle cx="170" cy="3" r=".7"/>
-          <circle cx="196" cy="10" r=".8"/><circle cx="220" cy="4" r=".9"/><circle cx="232" cy="16" r=".7"/><circle cx="20" cy="26" r=".6"/>
-        </g>
-        <circle cx="152" cy="28" r="20" fill="#8b8f99"/>
-        <ellipse cx="146" cy="23" rx="9" ry="6" fill="#5d626c"/>
-        <ellipse cx="146" cy="23" rx="9" ry="6" fill="none" stroke="#c7cbd4" stroke-width="1"/>
-        <circle cx="166" cy="34" r="4" fill="#5d626c"/>
-        <g>
-          <rect x="34" y="18" width="22" height="12" rx="3" fill="#e8e8e8"/>
-          <rect x="14" y="16" width="18" height="3" fill="#2b6cb0"/><rect x="14" y="22" width="18" height="3" fill="#2b6cb0"/>
-          <rect x="58" y="16" width="18" height="3" fill="#2b6cb0"/><rect x="58" y="22" width="18" height="3" fill="#2b6cb0"/>
-          <line x1="34" y1="24" x2="26" y2="24" stroke="#aaa" stroke-width="1.5"/><line x1="56" y1="24" x2="64" y2="24" stroke="#aaa" stroke-width="1.5"/>
-        </g>
-        <text x="118" y="38" font-family="Segoe UI, Arial" font-size="5.8" fill="#c7cbd4">DIMORPHOS &middot; CRATER</text>
-      </svg>
-      <h2>Hera sends first close-ups of Dimorphos crater</h2>
-      <div class="meta"><span>SOURCE: ESA &middot; SCIENTIFIC AMERICAN</span><span class="tag">CONFIRMED</span></div>
-    </div>
+      <div class="body">
+        <h3>Ukraine hits Savasleyka airbase</h3>
+        <p>Three MiG-31s and two Su-34s damaged, Kyiv says.</p>
+        <div class="meta">AL JAZEERA &middot; BBC <span class="badge rep">REPORTED</span></div>
+      </div>
+    </article>
 
   </div>
 
-  <!-- map band -->
+  <div class="small-row">
+    <article class="card small">
+      <span class="regtag eu">EUROPE</span><span class="cnum">09</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="192" height="70" fill="#f3ecda"/>
+        <circle cx="46" cy="34" r="26" fill="#fff" stroke="#16181d" stroke-width="2"/>
+        <g stroke="#16181d" stroke-width="1"><line x1="46" y1="10" x2="46" y2="14"/><line x1="46" y1="54" x2="46" y2="58"/><line x1="22" y1="34" x2="26" y2="34"/><line x1="66" y1="34" x2="70" y2="34"/><line x1="29" y1="17" x2="32" y2="20"/><line x1="60" y1="48" x2="63" y2="51"/><line x1="63" y1="17" x2="60" y2="20"/><line x1="32" y1="48" x2="29" y2="51"/></g>
+        <path d="M46 36 L62 20" stroke="#c8322b" stroke-width="3"/>
+        <circle cx="46" cy="36" r="3" fill="#16181d"/>
+        <rect x="88" y="24" width="52" height="32" rx="2" fill="#8fbf8f" stroke="#2e7d4f" stroke-width="1.4"/>
+        <circle cx="114" cy="40" r="10" fill="#c9e2c9" stroke="#2e7d4f"/>
+        <text x="114" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#1f4d33" font-family="Georgia">&pound;</text>
+        <path d="M152 58 L152 22" stroke="#c8322b" stroke-width="4"/>
+        <path d="M143 30 L152 18 L161 30 Z" fill="#c8322b"/>
+        <text x="190" y="21" text-anchor="end" font-size="9.6" font-weight="700" fill="#c8322b" font-family="Arial">+26%</text>
+      </svg>
+      <div class="body">
+        <h3>Ofgem cap rises 26% to &pound;2,166</h3>
+        <p>Typical annual bill at its highest in over three years.</p>
+        <div class="meta">OFGEM &middot; BBC <span class="badge off">OFFICIAL</span></div>
+      </div>
+    </article>
+
+    <article class="card small">
+      <span class="regtag me">MIDDLE EAST</span><span class="cnum">10</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="192" height="70" fill="#1a1430"/>
+        <rect y="52" width="192" height="18" fill="#3d4353"/>
+        <line x1="0" y1="60" x2="192" y2="60" stroke="#e9e3d1" stroke-width="1" stroke-dasharray="8 8"/>
+        <g><rect x="44" y="34" width="62" height="16" rx="6" fill="#c8322b"/><rect x="106" y="38" width="20" height="12" fill="#8f2d26"/><circle cx="58" cy="52" r="5" fill="#16181d"/><circle cx="92" cy="52" r="5" fill="#16181d"/><circle cx="118" cy="52" r="4" fill="#16181d"/></g>
+        <g><path d="M70 34 q-10 -20 4 -32 q2 12 8 14 q2 -10 8 -14 q2 22 -2 32z" fill="#ff7a2a"/><path d="M78 34 q-5 -12 2 -20 q1 8 5 8 q1 -6 4 -8 q1 12 -1 20z" fill="#ffd15a"/></g>
+        <g fill="#3a3550" opacity=".85"><circle cx="94" cy="8" r="9"/><circle cx="112" cy="4" r="7"/></g>
+        <text x="8" y="12" font-size="7" fill="#ffcf5c" font-weight="700" font-family="Arial">31 DEAD</text>
+      </svg>
+      <div class="body">
+        <h3>Cairo tanker fire kills 31 on Ring Road</h3>
+        <p>Fuel truck crash injures at least 21 more.</p>
+        <div class="meta">AP &middot; FRANCE 24 <span class="badge">CONFIRMED</span></div>
+      </div>
+    </article>
+
+    <article class="card small">
+      <span class="regtag af">AFRICA</span><span class="cnum">11</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="sky11" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6d08a"/><stop offset="1" stop-color="#e8a15c"/></linearGradient></defs>
+        <rect width="192" height="70" fill="url(#sky11)"/>
+        <circle cx="160" cy="16" r="10" fill="#fff1c4" opacity=".8"/>
+        <rect y="50" width="192" height="20" fill="#6f8a4e"/>
+        <g><path d="M20 50 l12 -12 12 12z" fill="#8a5a35"/><rect x="23" y="50" width="18" height="12" fill="#a97142"/><path d="M56 52 l10 -10 10 10z" fill="#8a5a35"/><rect x="59" y="52" width="14" height="10" fill="#a97142"/><path d="M88 50 l11 -11 11 11z" fill="#8a5a35"/><rect x="91" y="50" width="16" height="12" fill="#a97142"/></g>
+        <g stroke="#16181d" stroke-width="1.6" fill="none"><path d="M130 18 h22 M141 7 v22"/><circle cx="130" cy="18" r="3" fill="#16181d"/><circle cx="152" cy="18" r="3" fill="#16181d"/><circle cx="141" cy="7" r="2" fill="#16181d"/><circle cx="141" cy="29" r="2" fill="#16181d"/></g>
+        <circle cx="141" cy="18" r="3" fill="#c8322b"/>
+        <g fill="#7a6a5c" opacity=".7"><circle cx="104" cy="36" r="6"/><circle cx="112" cy="28" r="8"/><circle cx="122" cy="22" r="6"/></g>
+      </svg>
+      <div class="body">
+        <h3>Sudan drone strikes kill 19 civilians</h3>
+        <p>RSF attacks hit Ed Damazin and El Roseires.</p>
+        <div class="meta">AL JAZEERA &middot; ANADOLU <span class="badge">CONFIRMED</span></div>
+      </div>
+    </article>
+
+    <article class="card small">
+      <span class="regtag sa">SOUTH ASIA</span><span class="cnum">12</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="192" height="70" fill="#f2c230"/>
+        <circle cx="170" cy="13" r="14" fill="#f9dd6b"/>
+        <g><rect x="8" y="6" width="82" height="20" fill="#c8322b"/><text x="49" y="20" font-size="9" font-weight="700" fill="#fff" text-anchor="middle" font-family="Arial">Tk 17,000</text></g>
+        <g><rect x="100" y="30" width="64" height="15" fill="#1f5fa8"/><text x="132" y="41" font-size="6.6" font-weight="700" fill="#fff" text-anchor="middle" font-family="Arial">MINIMUM WAGE</text></g>
+        <g fill="#22262f">
+          <circle cx="26" cy="44" r="7"/><rect x="18" y="51" width="16" height="19"/><path d="M18 54 l-9 -8" stroke="#22262f" stroke-width="3"/>
+          <circle cx="58" cy="48" r="6"/><rect x="51" y="54" width="14" height="16"/><path d="M65 56 l10 -12" stroke="#22262f" stroke-width="3"/>
+          <circle cx="88" cy="46" r="6"/><rect x="81" y="52" width="14" height="18"/><path d="M81 55 l-9 -10" stroke="#22262f" stroke-width="3"/>
+          <circle cx="120" cy="50" r="6"/><rect x="113" y="56" width="14" height="14"/><path d="M127 58 l9 -9" stroke="#22262f" stroke-width="3"/>
+        </g>
+        <g fill="#f5efdc" opacity=".85"><circle cx="154" cy="52" r="7"/><circle cx="163" cy="46" r="9"/><circle cx="174" cy="52" r="6"/></g>
+      </svg>
+      <div class="body">
+        <h3>Bangladesh garment workers protest pay</h3>
+        <p>Tear gas fired as thousands demand Tk 17,000 minimum.</p>
+        <div class="meta">AP &middot; BUSINESS STANDARD <span class="badge">CONFIRMED</span></div>
+      </div>
+    </article>
+
+    <article class="card small">
+      <span class="regtag sc">SCIENCE</span><span class="cnum">13</span>
+      <svg class="scene" viewBox="0 0 192 70" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="192" height="70" fill="#0a1024"/>
+        <g fill="#d8e2ff"><circle cx="14" cy="10" r="1.2"/><circle cx="40" cy="6" r="1"/><circle cx="72" cy="12" r="1.4"/><circle cx="116" cy="6" r="1"/><circle cx="150" cy="10" r="1.2"/><circle cx="178" cy="6" r="1"/><circle cx="26" cy="30" r="1"/><circle cx="168" cy="34" r="1.2"/></g>
+        <ellipse cx="80" cy="40" rx="58" ry="26" fill="none" stroke="#5d7bb8" stroke-width="1" stroke-dasharray="3 4"/>
+        <path d="M20 44 L30 22 L56 12 L86 20 L102 40 L92 60 L62 68 L34 62 Z" fill="#c9b28a" stroke="#8f7a58" stroke-width="1.2"/>
+        <circle cx="56" cy="34" r="13" fill="#a88f68"/><circle cx="56" cy="34" r="8.5" fill="#8f7654"/>
+        <circle cx="94" cy="24" r="5" fill="#b09a72"/><circle cx="102" cy="44" r="7" fill="#a88f68"/>
+        <path d="M44 27 q12 -7 24 0" stroke="#e8d7b4" stroke-width="2" fill="none"/>
+        <g><rect x="132" y="10" width="16" height="10" fill="#c9d6e8"/><rect x="122" y="12" width="10" height="6" fill="#2f6fb5"/><rect x="148" y="12" width="10" height="6" fill="#2f6fb5"/><line x1="140" y1="20" x2="140" y2="30" stroke="#c9d6e8" stroke-width="2"/></g>
+        <text x="140" y="42" font-size="6" fill="#9db4e8" font-family="Arial" font-weight="700">HERA</text>
+      </svg>
+      <div class="body">
+        <h3>Hera images reveal Dimorphos crater</h3>
+        <p>Stadium-sized scar from NASA&rsquo;s 2022 DART impact.</p>
+        <div class="meta">ESA &middot; SCIENTIFIC AMERICAN <span class="badge">CONFIRMED</span></div>
+      </div>
+    </article>
+  </div>
+
   <div class="mapband">
-    <div class="mapwrap">
-      <div class="map-title">WHERE IT HAPPENED &mdash; PINS 1&ndash;13</div>
-      <svg viewBox="0 0 580 112" preserveAspectRatio="none" aria-hidden="true">
-        <rect width="580" height="112" fill="#d9ecf5"/>
-        <g stroke="#b9d8e6" stroke-width=".7">
-          <line x1="0" y1="28" x2="580" y2="28"/><line x1="0" y1="56" x2="580" y2="56"/><line x1="0" y1="84" x2="580" y2="84"/>
-          <line x1="116" y1="0" x2="116" y2="112"/><line x1="232" y1="0" x2="232" y2="112"/><line x1="348" y1="0" x2="348" y2="112"/><line x1="464" y1="0" x2="464" y2="112"/>
+    <div class="mapbox">
+      <div class="maphead">WHERE THE 13 PICTURED STORIES HAPPENED</div>
+      <svg viewBox="0 0 520 154" preserveAspectRatio="none" aria-hidden="true">
+        <rect width="520" height="154" fill="#dcecf7"/>
+        <g stroke="#c3d9e8" stroke-width=".6">
+          <line x1="0" y1="38" x2="520" y2="38"/><line x1="0" y1="76" x2="520" y2="76"/><line x1="0" y1="114" x2="520" y2="114"/>
+          <line x1="130" y1="18" x2="130" y2="150"/><line x1="260" y1="18" x2="260" y2="150"/><line x1="390" y1="18" x2="390" y2="150"/>
         </g>
-        <g fill="#16354d">
-          <path d="M24 10 L50 6 L80 10 L105 14 L130 18 L160 16 L190 18 L200 26 L190 34 L180 42 L170 46 L162 54 L150 58 L140 52 L130 46 L118 42 L100 36 L80 32 L60 30 L40 24 L24 18 Z"/>
-          <path d="M200 2 L222 0 L232 8 L226 18 L210 20 L198 12 Z"/>
-          <path d="M161 52 L177 58 L193 68 L201 80 L195 94 L185 104 L176 110 L170 98 L166 84 L160 70 L156 58 Z"/>
-          <path d="M270 30 L276 22 L290 18 L306 12 L322 14 L338 16 L352 20 L344 26 L330 30 L316 34 L302 32 L286 34 L274 34 Z"/>
-          <path d="M263 52 L270 42 L290 38 L306 34 L338 36 L346 48 L354 62 L350 74 L338 86 L322 98 L310 96 L300 84 L290 72 L278 62 L266 58 Z"/>
-          <path d="M340 36 L360 34 L376 40 L378 50 L366 56 L350 52 L342 44 Z"/>
-          <path d="M354 20 L380 14 L410 12 L440 14 L470 16 L500 20 L520 26 L512 34 L496 40 L480 46 L466 54 L452 60 L444 52 L436 42 L420 46 L404 38 L388 32 L370 28 Z"/>
-          <path d="M400 42 L414 40 L426 46 L422 58 L412 64 L403 54 Z"/>
-          <path d="M448 48 L460 46 L468 54 L460 60 L450 56 Z"/>
-          <path d="M470 62 L486 60 L492 68 L482 74 L470 70 Z"/>
-          <path d="M496 64 L510 62 L516 70 L506 76 L496 72 Z"/>
-          <path d="M475 88 L499 84 L516 90 L521 99 L510 104 L488 102 L475 96 Z"/>
-          <path d="M506 30 L514 26 L518 34 L510 38 Z"/>
+        <g fill="#22304c" stroke="#16203a" stroke-width="1">
+          <path d="M28 30 L120 24 L168 30 L172 44 L158 58 L150 74 L136 86 L126 96 L112 92 L104 80 L88 78 L72 66 L52 60 L38 48 Z"/>
+          <path d="M180 20 L212 22 L206 42 L190 46 L178 34 Z"/>
+          <path d="M138 96 L170 94 L182 104 L176 122 L166 140 L154 146 L148 132 L142 114 Z"/>
+          <path d="M244 36 L292 30 L306 38 L302 52 L288 60 L266 58 L250 50 Z"/>
+          <path d="M258 62 L312 60 L322 76 L318 96 L304 118 L288 132 L274 124 L266 104 L258 84 Z"/>
+          <path d="M304 30 L420 26 L452 38 L462 52 L448 66 L430 86 L406 94 L382 88 L360 92 L344 82 L326 70 L308 56 Z"/>
+          <path d="M344 78 L360 96 L352 108 L340 94 Z"/>
+          <path d="M380 96 L404 92 L416 102 L406 112 L388 108 Z"/>
+          <path d="M424 112 L466 108 L480 120 L474 134 L450 140 L430 130 Z"/>
+          <path d="M436 48 L444 56 L440 68 L432 60 Z"/>
+          <path d="M250 40 L258 38 L260 46 L252 50 Z"/>
         </g>
-        <g fill="#ffffff" stroke="#16354d" stroke-width="2.4" paint-order="stroke" font-family="Segoe UI, Arial" font-size="6" font-weight="700" letter-spacing=".2">
-          <text x="80" y="23">N. AMERICA</text>
-          <text x="158" y="82">S. AMERICA</text>
-          <text x="292" y="9">EUROPE</text>
-          <text x="290" y="68">AFRICA</text>
-          <text x="328" y="31" font-size="4.9">MIDDLE EAST</text>
-          <text x="430" y="24">ASIA</text>
-          <text x="390" y="70">S. ASIA</text>
-          <text x="496" y="30">E. ASIA</text>
-          <text x="460" y="80" font-size="5.1">SEA</text>
-          <text x="480" y="95">OCEANIA</text>
+        <g fill="#7fa3b8" font-family="Arial" font-size="4.6" letter-spacing=".6">
+          <text x="62" y="70">N AMERICA</text><text x="150" y="120">S AMERICA</text><text x="258" y="46">EUROPE</text><text x="272" y="98">AFRICA</text><text x="352" y="52">ASIA</text><text x="438" y="128">OCEANIA</text>
         </g>
-        <g class="pin" transform="translate(170,27)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">1</text></g>
-        <g class="pin" transform="translate(412,50)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">2</text></g>
-        <g class="pin" transform="translate(302,28)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">3</text></g>
-        <g class="pin" transform="translate(156,31)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">4</text></g>
-        <g class="pin" transform="translate(292,22)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">5</text></g>
-        <g class="pin" transform="translate(366,45)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">6</text></g>
-        <g class="pin" transform="translate(350,39)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">7</text></g>
-        <g class="pin" transform="translate(370,20)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">8</text></g>
-        <g class="pin" transform="translate(278,23)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">9</text></g>
-        <g class="pin" transform="translate(338,45)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">10</text></g>
-        <g class="pin" transform="translate(352,57)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">11</text></g>
-        <g class="pin" transform="translate(424,45)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">12</text></g>
-        <g class="pin" transform="translate(548,94)"><circle r="6.4" fill="#fffdf7" stroke="#0b1f33" stroke-width="1.9"/><text y="2.5" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7.4" font-weight="800" fill="#0b1f33">13</text></g>
-        <g fill="#8b8f99"><circle cx="562" cy="103" r="3.4"/><circle cx="558" cy="100" r="1.3" fill="#5d626c"/></g>
-        <text x="8" y="109" font-family="Segoe UI, Arial" font-size="4.4" fill="#4a6f84">13 PINS &middot; 13 ILLUSTRATED STORIES</text>
+        <g class="pin"><circle cx="136" cy="48" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="136" y="50.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">1</text></g>
+        <g class="pin"><circle cx="356" cy="88" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="356" y="90.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">2</text></g>
+        <g class="pin"><circle cx="276" cy="58" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="276" y="60.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">3</text></g>
+        <g class="pin"><circle cx="116" cy="64" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="116" y="66.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">4</text></g>
+        <g class="pin"><circle cx="260" cy="46" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="260" y="48.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">5</text></g>
+        <g class="pin"><circle cx="334" cy="80" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="334" y="82.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">6</text></g>
+        <g class="pin"><circle cx="296" cy="74" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="296" y="76.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">7</text></g>
+        <g class="pin"><circle cx="318" cy="44" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="318" y="46.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">8</text></g>
+        <g class="pin"><circle cx="244" cy="54" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="244" y="56.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">9</text></g>
+        <g class="pin"><circle cx="306" cy="86" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="306" y="88.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">10</text></g>
+        <g class="pin"><circle cx="320" cy="100" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="320" y="102.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">11</text></g>
+        <g class="pin"><circle cx="378" cy="82" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="378" y="84.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">12</text></g>
+        <g class="pin"><circle cx="488" cy="132" r="7" fill="#fffdf7" stroke="#16181d" stroke-width="1.6"/><text x="488" y="134.4" text-anchor="middle" font-size="7" font-weight="700" font-family="Arial" fill="#16181d">13</text></g>
+        <text x="460" y="146" font-size="4.6" fill="#7fa3b8" font-family="Arial">DEEP SPACE</text>
       </svg>
     </div>
+
     <div class="briefs">
-      <h3>ALSO <i>&mdash;</i> STORIES 14&ndash;36</h3>
-      <div class="brief-grid">
-        <div class="brief"><b>14</b> Trump judge blocks birthright-citizenship curbs</div>
-        <div class="brief"><b>15</b> S&amp;P &minus;0.3%, Nasdaq &minus;0.6% as AI shares slide</div>
-        <div class="brief"><b>16</b> Colombia frees 76 hostages in Cartagena store</div>
-        <div class="brief"><b>17</b> Brazil withdraws ambassador to Argentina</div>
-        <div class="brief"><b>18</b> 2,000 migrants reach Canary Islands in one day</div>
-        <div class="brief"><b>19</b> Norway court voids Arctic oil licences</div>
-        <div class="brief"><b>20</b> EU rejects US &ldquo;overcapacity&rdquo; case on tariffs</div>
-        <div class="brief"><b>21</b> Kushner meets Iranian officials; US urges exit</div>
-        <div class="brief"><b>22</b> Netanyahu judges urge dropping Case 4000 count</div>
-        <div class="brief"><b>23</b> Haftar visits Ankara, meets Erdogan</div>
-        <div class="brief"><b>24</b> DR Congo Ebola cases pass 12,000</div>
-        <div class="brief"><b>25</b> Tinubu pledges release of 78 abducted children</div>
-        <div class="brief"><b>26</b> Somalia: 5.3m face acute food insecurity</div>
-        <div class="brief"><b>27</b> Karachi building collapse kills 4</div>
-        <div class="brief"><b>28</b> Japan conveys regrets over US tariff plan</div>
-        <div class="brief"><b>29</b> Kim Jong Un inspects nuclear facilities</div>
-        <div class="brief"><b>30</b> Bank of Korea raises rate to 3.25%</div>
-        <div class="brief"><b>31</b> Hong Kong marks Tai Po fire anniversary, 168 dead</div>
-        <div class="brief"><b>32</b> Taiwan says US tariff at most 15%, lowest tier</div>
-        <div class="brief"><b>33</b> Bangkok oil depot explosion, fire under control</div>
-        <div class="brief"><b>34</b> West Java mine flood: 13 dead, 13 missing</div>
-        <div class="brief"><b>35</b> China, Japan, Korea, ASEAN set payment group</div>
-        <div class="brief"><b>36</b> Australia to miss 2030 and 2035 climate targets</div>
+      <div class="briefhead">ALSO &mdash; STORIES 14&ndash;36 <span>23 ONE-LINE BRIEFS</span></div>
+      <div class="briefcols">
+        <div class="briefcol">
+          <div class="brief"><b>14</b><span>Trump judge blocks birthright-citizenship restriction</span></div>
+          <div class="brief"><b>15</b><span>S&amp;P -0.3%, Nasdaq -0.6% as AI shares slide</span></div>
+          <div class="brief"><b>16</b><span>Colombia frees 76 hostages in Cartagena supermarket</span></div>
+          <div class="brief"><b>17</b><span>Brazil withdraws ambassador to Argentina</span></div>
+          <div class="brief"><b>18</b><span>2,000 migrants reach Canary Islands in one day</span></div>
+          <div class="brief"><b>19</b><span>Norway Supreme Court voids Arctic oil licences</span></div>
+          <div class="brief"><b>20</b><span>EU dismisses US &ldquo;overcapacity&rdquo; case behind tariffs</span></div>
+          <div class="brief"><b>21</b><span>Kushner met Iranian officials; US urges Americans to leave Iran</span></div>
+          <div class="brief"><b>22</b><span>Netanyahu trial judges recommend dropping Case 4000 charge</span></div>
+          <div class="brief"><b>23</b><span>Haftar visits Ankara, meets Erdogan</span></div>
+          <div class="brief"><b>24</b><span>DR Congo Ebola cases pass 12,000</span></div>
+          <div class="brief"><b>25</b><span>Tinubu pledges release of 78 abducted Borno schoolchildren</span></div>
+        </div>
+        <div class="briefcol">
+          <div class="brief"><b>26</b><span>Somalia 5.3m face acute food insecurity</span></div>
+          <div class="brief"><b>27</b><span>Karachi building collapse, 4 dead</span></div>
+          <div class="brief"><b>28</b><span>Japan regrets US tariff plan</span></div>
+          <div class="brief"><b>29</b><span>Kim Jong Un inspects nuclear facilities</span></div>
+          <div class="brief"><b>30</b><span>Bank of Korea raises rate to 3.25%</span></div>
+          <div class="brief"><b>31</b><span>Hong Kong Tai Po fire first anniversary, 168 dead</span></div>
+          <div class="brief"><b>32</b><span>Taiwan says US tariff rate at most 15%, lowest tier</span></div>
+          <div class="brief"><b>33</b><span>Bangkok Bangchak oil depot explosion</span></div>
+          <div class="brief"><b>34</b><span>West Java gold mine flood, 13 dead 13 missing</span></div>
+          <div class="brief"><b>35</b><span>China-Japan-Korea-ASEAN payment working group in Kyoto</span></div>
+          <div class="brief"><b>36</b><span>Australia to miss 2030/2035 climate targets</span></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- date check -->
   <div class="datecheck">
-    <div class="dc-label"><b>DATE CHECK</b><span>THESE ARE NOT 26 NOVEMBER</span></div>
-    <div class="dc-body">
-      <div class="dc-grid">
-        <div class="dc-item"><b>&times;</b> Typhoon Dujuan hits Japan, 4 dead &mdash; September 2026 event</div>
-        <div class="dc-item"><b>&times;</b> Ukraine drones hit Russian ships off Libya &mdash; 22 Nov</div>
-        <div class="dc-item"><b>&times;</b> Nvidia reinstates Jensen Huang &mdash; 24 Nov</div>
-        <div class="dc-item"><b>&times;</b> Belgium strike grounds flights &mdash; 23 Nov</div>
-        <div class="dc-item"><b>&times;</b> COP31 ends without a pact &mdash; 22 Nov</div>
-      </div>
-      <div class="dc-note">Every story above happened or was first reported on Thursday 26 November 2026. Sources are named on each story.</div>
-    </div>
+    <div class="dct">DATE CHECK &mdash; THESE ARE NOT 26 NOVEMBER</div>
+    <div class="dci">Typhoon Dujuan hits Japan (September 2026) &middot; Nvidia reinstates Jensen Huang (24 Nov) &middot; COP31 ends without a pact (22 Nov) &middot; Ukraine drones hit Russian ships off Libya (22 Nov) &middot; Belgium strike grounds flights (23 Nov)</div>
+    <div class="dcn">Every story above happened or was first reported on 26 November 2026 &mdash; in at least one time zone.</div>
   </div>
 
-  <!-- footer -->
   <div class="footer">
-    <div class="legend">HOW SURE &mdash; OFFICIAL = government or institution &middot; CONFIRMED = two or more sources &middot; REPORTED = one named outlet &middot; CLAIM = one side&rsquo;s account &middot; ONGOING = still unfolding &middot; Scenes are drawn illustrations, not photographs.</div>
-    <div class="sign">THE WORLD IN ONE DAY &middot; 26 NOV 2026 &middot; 36 STORIES &middot; 9 REGIONS</div>
+    <span>CONFIRMED &middot; OFFICIAL &middot; REPORTED &middot; CLAIM &middot; ONGOING &mdash; credibility tags follow the reporting</span>
+    <span>41 SOURCES &middot; 15 FIELDS &middot; 36 STORIES &middot; 9 REGIONS</span>
   </div>
-
 </div>
-
 <script>
-(function () {
-  function rectOf(el) { return el.getBoundingClientRect(); }
-  var page = document.getElementById('page');
-  var pr = rectOf(page);
-  var clipped = [];
-  var nodes = document.querySelectorAll('.card, .card h2, .card .dek, .card .meta, .brief, .stat, .tl-cell, .dc-body, .dc-item, .mapband, .timeline');
-  nodes.forEach(function (el) {
-    if (el.scrollHeight > el.clientHeight + 1 && getComputedStyle(el).overflow !== 'visible') {
-      clipped.push((el.className || el.tagName) + '|' + (el.textContent || '').trim().slice(0, 24));
-    }
-    var r = rectOf(el);
-    if (r.bottom > pr.bottom + 0.5 || r.right > pr.right + 0.5 || r.top < pr.top - 0.5) {
-      clipped.push('OUT|' + (el.className || el.tagName) + '|' + Math.round(r.top) + ',' + Math.round(r.bottom));
-    }
-  });
-  var qa = {
-    pageW: page.scrollWidth,
-    pageH: page.scrollHeight,
-    docW: document.documentElement.scrollWidth,
-    docH: document.documentElement.scrollHeight,
-    cards: document.querySelectorAll('.card').length,
-    briefs: document.querySelectorAll('.brief').length,
-    pins: document.querySelectorAll('.pin').length,
-    clippedCount: clipped.length,
-    clipped: clipped.slice(0, 12),
-    briefClip: Array.prototype.filter.call(document.querySelectorAll('.brief'), function (el) { return el.scrollWidth > el.clientWidth + 1; }).length,
-    h2Clip: Array.prototype.filter.call(document.querySelectorAll('.card h2'), function (el) { return el.scrollHeight > el.clientHeight + 1; }).length,
-    cardOverflow: Array.prototype.filter.call(document.querySelectorAll('.card'), function (el) {
-      var cr = el.getBoundingClientRect();
-      var kids = el.children;
-      if (!kids.length) return false;
-      var last = kids[kids.length - 1].getBoundingClientRect();
-      return last.bottom > cr.bottom - 1;
-    }).length
-  };
-  document.documentElement.setAttribute('data-qa', JSON.stringify(qa));
-})();
+  function qa(){
+    const de=document.documentElement, page=document.querySelector('.page'), pr=page.getBoundingClientRect();
+    const sel='.card,.card *,.brief,.brief *,.stat,.stat *,.reg,.tmom,.tmom *,.datecheck *,.masthead,.subhead,.kicker,.footer';
+    const clipped=[];
+    document.querySelectorAll(sel).forEach(el=>{
+      if(!(el instanceof HTMLElement)) return;
+      const cs=getComputedStyle(el);
+      const oy=cs.overflowY, ox=cs.overflowX, ov=cs.overflow;
+      if((oy==='hidden'||oy==='clip'||ov==='hidden') && (el.scrollHeight>el.clientHeight+1 || el.scrollWidth>el.clientWidth+1)){
+        clipped.push((el.className||el.tagName)+':'+(el.textContent||'').trim().slice(0,24));
+      }
+    });
+    const leaves=[...document.querySelectorAll('.page *')].filter(e=>e instanceof HTMLElement && e.children.length===0 && (e.textContent||'').trim().length);
+    const out=leaves.filter(el=>{const r=el.getBoundingClientRect();return r.bottom>1024.6||r.right>1024.6||r.top<-0.6||r.left<-0.6;}).map(el=>(el.textContent||'').trim().slice(0,26));
+    const mast=document.querySelector('.masthead');
+    const svgBad=[];
+    document.querySelectorAll('svg').forEach(svg=>{
+      const vb=svg.viewBox&&svg.viewBox.baseVal; if(!vb||!vb.width) return;
+      svg.querySelectorAll('text').forEach(t=>{
+        try{const b=t.getBBox(); if(b.x<-0.5||b.y<-0.5||b.x+b.width>vb.width+0.5||b.y+b.height>vb.height+0.5){svgBad.push((t.textContent||'').trim()+':'+Math.round(b.x)+','+Math.round(b.y)+','+Math.round(b.width)+'x'+Math.round(b.height));}}catch(e){}
+      });
+    });
+    return {pageW:de.scrollWidth,pageH:de.scrollHeight,bodyH:Math.round(document.body.getBoundingClientRect().height),pageTop:Math.round(pr.top),pageBottom:Math.round(pr.bottom),mastW:mast.scrollWidth,mastClient:mast.clientWidth,cards:document.querySelectorAll('.card').length,briefs:document.querySelectorAll('.brief').length,pins:document.querySelectorAll('.pin').length,clippedCount:clipped.length,clipped:clipped.slice(0,10),outCount:out.length,out:out.slice(0,10),svgTextBad:svgBad};
+  }
+  window.addEventListener('load',()=>{setTimeout(()=>{document.documentElement.setAttribute('data-qa',JSON.stringify(qa()));},250);});
 </script>
 </body>
 </html>
-

@@ -1,41 +1,34 @@
-/**
- * make.fun entry wrapper for news-image-20261126.
- * Validates the rendered PNG (signature, IHDR dimensions, 1 MiB cap) and copies
- * it to the output directory requested by the harness.
- */
-import { copyFileSync, mkdirSync, readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+// Entry program for make.fun news-image-20261126 (Node 22, standard library only).
+// Validates entry.png beside this file (PNG signature, IHDR dimensions, 1 MiB cap),
+// then copies it byte-for-byte to MAKEFUN_OUTPUT_DIR (or /output inside the grader).
+
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { createHash } from 'node:crypto';
 
 const MAX_BYTES = 1_048_576;
-const MAX_SIDE = 1024;
-const PNG_SIGNATURE = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
+const MAX_DIM = 1024;
 
-const here = dirname(fileURLToPath(import.meta.url));
-const source = join(here, "entry.png");
+const src = join(process.cwd(), 'entry.png');
+const buf = readFileSync(src);
 
-const bytes = readFileSync(source);
-
-if (bytes.length > MAX_BYTES) {
-  throw new Error(`entry.png is ${bytes.length} bytes, over the ${MAX_BYTES} byte cap`);
+const pngSig = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+if (buf.length < 24 || !buf.subarray(0, 8).equals(pngSig)) {
+  throw new Error('entry.png is not a PNG file');
 }
-if (bytes.length < 24) {
-  throw new Error("entry.png is too short to contain a PNG header");
+const width = buf.readUInt32BE(16);
+const height = buf.readUInt32BE(20);
+if (width > MAX_DIM || height > MAX_DIM) {
+  throw new Error(`entry.png is ${width}x${height}, over ${MAX_DIM}px`);
 }
-for (let i = 0; i < PNG_SIGNATURE.length; i += 1) {
-  if (bytes[i] !== PNG_SIGNATURE[i]) {
-    throw new Error(`entry.png has an invalid PNG signature at byte ${i}`);
-  }
-}
-const width = bytes.readUInt32BE(16);
-const height = bytes.readUInt32BE(20);
-if (width > MAX_SIDE || height > MAX_SIDE) {
-  throw new Error(`entry.png is ${width}x${height}, over the ${MAX_SIDE}x${MAX_SIDE} limit`);
+if (buf.length > MAX_BYTES) {
+  throw new Error(`entry.png is ${buf.length} bytes, over ${MAX_BYTES}`);
 }
 
-const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
-mkdirSync(outputDir, { recursive: true });
-const destination = join(outputDir, "entry.png");
-copyFileSync(source, destination);
+const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+mkdirSync(outDir, { recursive: true });
+const dest = join(outDir, 'entry.png');
+writeFileSync(dest, buf);
 
-console.log(`entry.png OK: ${width}x${height}, ${bytes.length} bytes -> ${destination}`);
+const sha256 = createHash('sha256').update(buf).digest('hex');
+console.log(`entry.png ${width}x${height} ${buf.length} bytes sha256=${sha256} -> ${dest}`);
